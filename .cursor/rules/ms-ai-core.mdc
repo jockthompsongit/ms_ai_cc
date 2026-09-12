@@ -1,0 +1,13 @@
+---
+description: MS AI Command Center — always load vault paths and AGENTS.md
+alwaysApply: true
+---
+
+# MS AI Command Center (always)
+
+- Schema: [AGENTS.md](../../AGENTS.md)
+- Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` (`Content/`, `raw/`, `wiki/`)
+- Ops dashboard: [command-center/HOME.md](../../command-center/HOME.md)
+- Personas (invoke by name): Librarian, Tutor, Homework Coach, US Signal Advisor — see `.cursor/rules/`
+- Prefer wiki `index.md` before answering course questions
+- Do not commit vault binaries or push unless the user asks

@@ -1,0 +1,39 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local overrides
+local_paths.py
+
+# Never commit course binaries or large media
+*.pdf
+*.pptx
+*.ppt
+*.docx
+*.mp4
+*.m4a
+*.wav
+*.zip
+
+# Optional: if vault is ever symlinked into repo
+raw/
+Content/
+_archive/
