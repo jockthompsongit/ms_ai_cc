@@ -2,19 +2,20 @@
 
 **Course:** AI 5100 — Foundations of Generative AI (Fall 2026 Module 1)  
 **Window:** Aug 26 – Oct 16, 2026 · Tue sync 6:00–7:30 PM · Thu async ~75 min  
-**Instructor:** Timothy Darrah
+**Instructor:** Timothy Darrah  
+**Scaffolding:** complete · GitHub: [ms_ai_cc](https://github.com/jockthompsongit/ms_ai_cc)
 
 ## This week focus
 
-- [ ] Confirm Week 2 materials ingested (papers + Granola if any)
-- [ ] Drop Granola export into `Content\AI 5100 Week N\sessions\`
-- [ ] Identify next graded deliverable (see homework-queue)
+- [ ] Confirm HW2 due date / rubric on Brightspace → update [homework-queue.md](homework-queue.md)
+- [ ] Drop Granola into `Content\AI 5100 Week N\sessions\` going forward
+- [ ] Finish HW Week 2 paper briefs (Homework Coach)
+- [ ] Prep Week 3 dump when Brightspace posts
 
-## Next actions
+## Done recently
 
-1. Finish scaffolding step 2 (vault consolidate) when approved
-2. Convert Content Week 1–2 → raw
-3. Librarian ingest: syllabus + sessions
+- Weeks 1–2 converted + lecture wiki pages ingested
+- Vault consolidated; Command Center pushed to GitHub
 
 ## Quick links
 
@@ -23,7 +24,7 @@
 - [academic-calendar.md](academic-calendar.md)
 - [grade-tracker.md](grade-tracker.md)
 - [../us-signal/applications-log.md](../us-signal/applications-log.md)
-- Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI`
+- Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` · Wiki index: `wiki\index.md`
 
 ## Capture checklist (every class)
 
@@ -31,6 +32,7 @@
 |------|-------|
 | Brightspace/async dumped to Content | |
 | Granola → `sessions/granola-YYYYMMDD.md` | |
+| `python scripts\convert_content.py --week N` | |
 | Optional Zoom transcript/link note | |
 | Librarian ingest | |
 | US Signal application note | |
