@@ -23,7 +23,8 @@ Scaffolding is **complete** (2026-09-12): vault consolidated, Weeks 1–2 conver
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Layers and flows |
 | [AGENTS.md](AGENTS.md) | Wiki + tutor schema (agents read this) |
 | [CHEATSHEET.md](CHEATSHEET.md) | Paths and commands |
-| [command-center/HOME.md](command-center/HOME.md) | Weekly dashboard |
+| [command-center/HOME.md](command-center/HOME.md) | Weekly dashboard (markdown) |
+| Local UI | `python scripts/dashboard.py --open` → http://127.0.0.1:8765 |
 | [command-center/personas.md](command-center/personas.md) | Role agents |
 
 ## Personas

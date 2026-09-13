@@ -19,6 +19,7 @@
 
 ## Quick links
 
+- Local dashboard: `python scripts\dashboard.py --open` → http://127.0.0.1:8765
 - [personas.md](personas.md) — how to invoke roles
 - [homework-queue.md](homework-queue.md)
 - [academic-calendar.md](academic-calendar.md)

@@ -23,3 +23,14 @@
 ## 2026-09-12 — Scaffolding complete + GitHub
 
 **Decision:** Initial commit and push to `jockthompsongit/ms_ai_cc` on `main`. Wiki content stays in Dropbox (not git); Command Center markdown/scripts are versioned.
+
+## 2026-09-12 — Local ops dashboard
+
+**Decision:** Ship a **local-only** Command Center dashboard (`scripts/dashboard.py` → `http://127.0.0.1:8765`). Stdlib HTTP server; parses `command-center/*.md` + vault path probes. No auth, DB, Brightspace scrape, or new pip deps. Markdown remains source of truth.
+
+**Alternatives evaluated:**
+- StudentOS / MoodleOS / Learnora — rejected (full LMS stacks; too heavy)
+- ZEN-OS / Obsidian Dataview — weaker for repo ops files; plugin-coupled
+- Cursor Canvas — not a durable always-on ops UI
+
+**Still deferred:** hosted/shared dashboard, embeddings/RAG, Granola API.

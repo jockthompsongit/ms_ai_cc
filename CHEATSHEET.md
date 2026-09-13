@@ -29,6 +29,17 @@ python scripts\convert_content.py --week 3 --dry-run
 
 Deps: `markitdown[pdf,pptx,docx]`. Granola `.md` files are copied as-is into `raw/.../sessions/`.
 
+## Dashboard (local)
+
+```powershell
+cd C:\Users\jockt\dev\ms_ai
+.\.venv\Scripts\Activate.ps1
+python scripts\dashboard.py --open
+# http://127.0.0.1:8765 — optional: --port 8765
+```
+
+Stdlib only. Reads `command-center/*.md` + vault capture paths; markdown stays source of truth.
+
 ## Personas (Cursor chat)
 
 | Say | Does |

@@ -69,4 +69,4 @@ Fill application notes on concepts/lectures. Monthly: `us-signal/monthly/YYYY-MM
 
 ## Out of scope (v1)
 
-Web dashboard, vector RAG, multi-agent orchestration frameworks, auto Dropbox/Granola sync.
+Hosted/shared dashboard (local ops UI OK: `scripts/dashboard.py`), vector RAG, multi-agent orchestration frameworks, auto Dropbox/Granola sync.

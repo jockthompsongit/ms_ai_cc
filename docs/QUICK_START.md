@@ -1,6 +1,6 @@
 # Quick start
 
-Vanderbilt MS AI Command Center: Cursor + Obsidian. No web app, no embeddings DB.
+Vanderbilt MS AI Command Center: Cursor + Obsidian. Local ops dashboard optional; no hosted web app, no embeddings DB.
 
 ## One-time setup
 
@@ -16,6 +16,7 @@ pip install -r scripts\requirements.txt
 ```
 
 4. Skim [AGENTS.md](../AGENTS.md) and [command-center/HOME.md](../command-center/HOME.md)
+5. Optional dashboard: `python scripts\dashboard.py --open` → http://127.0.0.1:8765
 
 ## Day-to-day
 
@@ -26,6 +27,7 @@ pip install -r scripts\requirements.txt
 | 3 | `python scripts\convert_content.py --week N` |
 | 4 | Cursor: **Librarian** — ingest / session merge |
 | 5 | **Tutor** / **Homework Coach** / **US Signal Advisor** as needed |
+| — | Ops glance: `python scripts\dashboard.py --open` |
 
 ## Already done (as of 2026-09-12)
 

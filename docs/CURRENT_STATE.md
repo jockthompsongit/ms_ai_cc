@@ -11,12 +11,13 @@ Updated: 2026-09-12
 - **Wiki:** course home, syllabus, concepts, Week-01/02 lectures, HW Week 2 stub, `index.md` + `log.md`
 - **Cursor rules:** `ms-ai-core.mdc` (always) + Librarian / Tutor / Homework / US Signal
 - **Docs:** README, CONTEXT, CHEATSHEET, QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE refreshed 2026-09-12
+- **Local dashboard:** `python scripts/dashboard.py` → http://127.0.0.1:8765 (markdown + vault probes; no write-back)
 
 ## Gaps
 
 - Granola not yet landing in `Content/.../sessions/` (Week 2 used class notes as live source)
 - Confirm HW2 due date and rubric on Brightspace → update `homework-queue.md`
-- Weeks 3–8 when Content arrives
+- Week 3 Content present; convert + Librarian ingest still pending
 - First US Signal monthly brief not written yet (`us-signal/monthly/`)
 - Grade tracker empty — fill from syllabus weights
 
@@ -27,4 +28,4 @@ Updated: 2026-09-12
 
 ## Current focus
 
-Weekly ops: dump → convert → Librarian ingest. Next academic: HW2 finish + Week 3 materials when available.
+Weekly ops: dump → convert → Librarian ingest. Next academic: HW2 finish + Week 3 convert/ingest. Dashboard for ops glance.
