@@ -12,6 +12,7 @@ Support Vanderbilt MS AI academics (A-level mastery) and Chief of AI work at US 
 | Content dump | `vault/Content/` | Immutable weekly dumps (PDF/PPTX/HTML/Granola) |
 | Raw | `vault/raw/` | Converted markdown; agent reads, never edits |
 | Wiki | `vault/wiki/` | LLM-maintained interlinked knowledge |
+| Knowledge graph | sibling `wiki-to-graph` + `.cursor/skills/wiki-to-graph/` | Typed graph derived from wiki (`stage_wiki_graph.py` → viewer) |
 | Obsidian | vault root | Human IDE (graph, backlinks) |
 
 ```text
@@ -21,6 +22,7 @@ Content (+ sessions/Granola)
     → Librarian ingest
     → wiki/ (index.md + log.md)
          ├→ Tutor / Homework Coach
+         ├→ wiki-to-graph (`stage_wiki_graph.py`) → typed viewer
          └→ US Signal Advisor → monthly brief
 ```
 
@@ -33,8 +35,9 @@ ms_ai/
   docs/                     # QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE
   command-center/           # HOME, homework-queue, calendar, grades
   us-signal/                # BRIEF_TEMPLATE, applications-log, monthly/
-  scripts/                  # convert_content.py, vault_paths.py, dashboard.py
+  scripts/                  # convert_content.py, vault_paths.py, dashboard.py, stage_wiki_graph.py
   .cursor/rules/            # ms-ai-core + personas
+  .cursor/skills/           # lecture-notes + wiki-to-graph (four skills)
 ```
 
 ### Local dashboard

@@ -57,6 +57,10 @@ Use syllabus + assignment briefs only. Track status in `command-center/homework-
 
 Periodic health check: orphans, stale claims, missing concepts from course map, weeks missing Granola or async.
 
+### Graph (wiki-to-graph)
+
+Project skills: `.cursor/skills/wiki-to-graph/`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`. Sibling clone: `C:\Users\jockt\dev\wiki-to-graph`. Nested vault pages must be flattened first: `python scripts/stage_wiki_graph.py`. Output: `wiki-to-graph/build/vandy-ms-ai/`. Markdown wiki stays source of truth; never edit `graph.json`. **Librarian** still owns ingest — `wiki-author` does not replace it.
+
 ### US Signal
 
 Fill application notes on concepts/lectures. Monthly: `us-signal/monthly/YYYY-MM.md` from `BRIEF_TEMPLATE.md`. Never paste Vanderbilt proprietary materials into company-facing briefs.

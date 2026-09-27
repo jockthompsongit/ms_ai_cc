@@ -9,6 +9,7 @@ Lean pointer for AI agents. Load docs by task size — do not read everything ev
 | Large / architecture | QUICK_START, CURRENT_STATE, DECISIONS | [ARCHITECTURE](docs/ARCHITECTURE.md) |
 | Wiki ingest / tutor / homework | [AGENTS.md](AGENTS.md) + vault `wiki/index.md` | Persona rule in `.cursor/rules/` |
 | Lecture recording → notes | `.cursor/skills/lecture-recording-to-lecture-notes/SKILL.md` | Week folder under `Content/` |
+| Wiki → knowledge graph | `.cursor/skills/wiki-to-graph/SKILL.md` | `wiki-graph-view` / `wiki-graph-maintain`; `scripts/stage_wiki_graph.py` |
 
 ## Doc map
 

@@ -20,6 +20,7 @@
 ## Quick links
 
 - Local dashboard: `python scripts\dashboard.py --open` → http://127.0.0.1:8765
+- Wiki graph: `python scripts\stage_wiki_graph.py` → `wiki-to-graph\build\vandy-ms-ai\graph-viewer.html`
 - [personas.md](personas.md) — how to invoke roles
 - [homework-queue.md](homework-queue.md)
 - [academic-calendar.md](academic-calendar.md)

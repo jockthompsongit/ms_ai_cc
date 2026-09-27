@@ -25,6 +25,7 @@ Scaffolding is **complete** (2026-09-12): vault consolidated, Weeks 1–2 conver
 | [CHEATSHEET.md](CHEATSHEET.md) | Paths and commands |
 | [command-center/HOME.md](command-center/HOME.md) | Weekly dashboard (markdown) |
 | Local UI | `python scripts/dashboard.py --open` → http://127.0.0.1:8765 |
+| Wiki graph | `python scripts/stage_wiki_graph.py` — skills in `.cursor/skills/wiki-to-graph/` |
 | [command-center/personas.md](command-center/personas.md) | Role agents |
 
 ## Personas

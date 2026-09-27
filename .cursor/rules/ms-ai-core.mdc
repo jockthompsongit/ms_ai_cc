@@ -9,5 +9,6 @@ alwaysApply: true
 - Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` (`Content/`, `raw/`, `wiki/`)
 - Ops dashboard: [command-center/HOME.md](../../command-center/HOME.md)
 - Personas (invoke by name): Librarian, Tutor, Homework Coach, US Signal Advisor — see `.cursor/rules/`
+- Wiki graph skills: `wiki-to-graph`, `wiki-graph-view`, `wiki-graph-maintain` (Librarian still owns ingest)
 - Prefer wiki `index.md` before answering course questions
 - Do not commit vault binaries or push unless the user asks

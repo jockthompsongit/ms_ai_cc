@@ -42,7 +42,7 @@ Stdlib only. Reads `command-center/*.md` + vault capture paths; markdown stays s
 
 ## Wiki graph (wiki-to-graph)
 
-Requires sibling clone: `C:\Users\jockt\dev\wiki-to-graph`
+Upstream: [vanderbilt-ms-ai/wiki-to-graph](https://github.com/vanderbilt-ms-ai/wiki-to-graph). Sibling clone: `C:\Users\jockt\dev\wiki-to-graph`. Cursor skills: `.cursor/skills/wiki-to-graph/`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`.
 
 ```powershell
 cd C:\Users\jockt\dev\ms_ai
@@ -52,7 +52,7 @@ python scripts\stage_wiki_graph.py
 # python scripts\stage_wiki_graph.py --no-open --validate
 ```
 
-Output: `C:\Users\jockt\dev\wiki-to-graph\build\vandy-ms-ai\` (vault wiki untouched).
+Output: `C:\Users\jockt\dev\wiki-to-graph\build\vandy-ms-ai\` (vault wiki untouched). In chat: "turn my wiki into a graph" or "open the graph viewer".
 
 ## Lecture notes from recording
 

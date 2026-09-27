@@ -12,7 +12,7 @@ Updated: 2026-09-27
 - **Cursor rules:** `ms-ai-core.mdc` (always) + Librarian / Tutor / Homework / US Signal
 - **Docs:** README, CONTEXT, CHEATSHEET, QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE refreshed 2026-09-12
 - **Local dashboard:** `python scripts/dashboard.py` → http://127.0.0.1:8765 (markdown + vault probes; no write-back)
-- **wiki-to-graph:** cloned at `C:\Users\jockt\dev\wiki-to-graph` — run `python scripts/stage_wiki_graph.py` to flatten + build + open viewer
+- **wiki-to-graph:** sibling clone at `C:\Users\jockt\dev\wiki-to-graph` (pulled to `main` 2026-09-27). Four Cursor skills under `.cursor/skills/` (`wiki-to-graph`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`). Build via `python scripts/stage_wiki_graph.py`. Claude Code plugin `wiki-to-graph@wiki-to-graph` is 1.0.0 (marketplace still lists 3 skills; project copy has all 4).
 - **Lecture-notes skill:** `.cursor/skills/lecture-recording-to-lecture-notes/` — Zoom VTT (+ optional mp4/slides) → `raw/.../lecture-notes/`
 - **Voice layer:** `voices/house.md` + `voices/professors/darrah.md` (Tutor / Homework). Syllabus outcomes not pasted yet — vault unreachable 2026-09-27.
 

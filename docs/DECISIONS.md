@@ -45,6 +45,12 @@
 
 **Alternatives:** Obsidian graph (already have; untyped); vector RAG (still deferred). **Not** merging into `ms_ai_cc` as a submodule yet — keep as sibling tool.
 
+## 2026-09-27 — wiki-to-graph as project Cursor skills
+
+**Decision:** Keep the sibling clone at `C:\Users\jockt\dev\wiki-to-graph` as the CLI/source tree. Vendor the four skills into `.cursor/skills/` (same pattern as lecture-notes) so Cursor agents load them without depending on the Claude plugin cache. Claude Code plugin remains installed (`wiki-to-graph@wiki-to-graph` 1.0.0); marketplace package still omits `wiki-graph-view`, which is on `main` and in the project copy.
+
+**Overlay:** Skills point at the Dropbox wiki + `scripts/stage_wiki_graph.py`. Librarian still owns ingest. `wiki-author` must not bootstrap a second wiki from `raw/`. Viewer localhost fallback uses port 8766 so it does not collide with `dashboard.py` on 8765.
+
 ## 2026-09-27 — Lecture recording → notes skill
 
 **Decision:** Vendor [lecture-recording-to-lecture-notes](https://github.com/jessespencersmith/skill-repo/tree/main/lecture-recording-to-lecture-notes) as a **project Cursor skill** at `.cursor/skills/lecture-recording-to-lecture-notes/`. Procedure, not a fifth persona.

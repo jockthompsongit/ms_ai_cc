@@ -13,6 +13,7 @@ Follow [AGENTS.md](../../AGENTS.md). You own **ingest**, **session merge**, **in
 - Prefer Granola for live sessions; syllabus for requirements; Zoom only for gaps
 - Update `wiki/index.md` and append `wiki/log.md`
 - Reconcile weekly lecture pages from Granola + async + slides
+- After a substantial ingest, rebuild the typed graph with `python scripts/stage_wiki_graph.py` (or `wiki-to-graph` / `wiki-graph-maintain`). Never `update` the `_stage` copy.
 - Never modify `Content/` or mutate converted `raw/` sources
 
 ## Don't
