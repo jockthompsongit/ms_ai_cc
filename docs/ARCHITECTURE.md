@@ -56,6 +56,13 @@ Vandy_MS_AI/
 
 Thin instruction overlays on shared `AGENTS.md`. One wiki, four roles. No multi-agent runtime.
 
+## Voice
+
+| Layer | File | Used by |
+|-------|------|---------|
+| House | [voices/house.md](../voices/house.md) | All roles |
+| Professor pack | [voices/professors/darrah.md](../voices/professors/darrah.md) | Tutor, Homework Coach (AI 5100) |
+
 ## Deferred (v1)
 
 Hosted/shared dashboard, embeddings/RAG, Granola API sync, Zoom video in vault/git — see [DECISIONS.md](DECISIONS.md). Local ops UI: `scripts/dashboard.py`.

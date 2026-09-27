@@ -37,3 +37,6 @@ local_paths.py
 raw/
 Content/
 _archive/
+
+# Local graph build artifacts (wiki-to-graph staging lives under sibling clone)
+build/

@@ -40,6 +40,26 @@ python scripts\dashboard.py --open
 
 Stdlib only. Reads `command-center/*.md` + vault capture paths; markdown stays source of truth.
 
+## Wiki graph (wiki-to-graph)
+
+Requires sibling clone: `C:\Users\jockt\dev\wiki-to-graph`
+
+```powershell
+cd C:\Users\jockt\dev\ms_ai
+.\.venv\Scripts\Activate.ps1
+python scripts\stage_wiki_graph.py
+# stages concepts/sources/syntheses → build → opens graph-viewer.html
+# python scripts\stage_wiki_graph.py --no-open --validate
+```
+
+Output: `C:\Users\jockt\dev\wiki-to-graph\build\vandy-ms-ai\` (vault wiki untouched).
+
+## Lecture notes from recording
+
+Project skill: `.cursor/skills/lecture-recording-to-lecture-notes/` (upstream [skill-repo](https://github.com/jessespencersmith/skill-repo/tree/main/lecture-recording-to-lecture-notes)).
+
+In Cursor: ask to convert a Zoom VTT / lecture recording to notes. Reads `Content\AI 5100 Week N\`; writes `raw\courses\AI-5100\week-NN\lecture-notes\`. Then **Librarian** ingest if you want wiki pages. Do not commit `.mp4`.
+
 ## Personas (Cursor chat)
 
 | Say | Does |
@@ -48,6 +68,8 @@ Stdlib only. Reads `command-center/*.md` + vault capture paths; markdown stays s
 | Tutor | Explain / quiz from wiki |
 | Homework Coach | Rubric drafts, gap analysis |
 | US Signal Advisor | Work apps + monthly brief |
+
+Voice: `voices/house.md`. AI 5100 pack: `voices/professors/darrah.md` (Tutor / Homework only).
 
 ## Git
 

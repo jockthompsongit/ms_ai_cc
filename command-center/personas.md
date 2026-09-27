@@ -10,3 +10,5 @@ Invoke by name in Cursor chat (e.g. “Librarian: ingest this Granola note”).
 | **US Signal Advisor** | `.cursor/rules/us-signal.mdc` | Work applications, monthly brief |
 
 All personas share [AGENTS.md](../AGENTS.md) paths and source-priority rules.
+
+**Voice:** [voices/house.md](../voices/house.md) for every role. Professor packs (`voices/professors/`) — Tutor and Homework Coach only. AI 5100: [darrah.md](../voices/professors/darrah.md).

@@ -28,6 +28,8 @@ pip install -r scripts\requirements.txt
 | 4 | Cursor: **Librarian** — ingest / session merge |
 | 5 | **Tutor** / **Homework Coach** / **US Signal Advisor** as needed |
 | — | Ops glance: `python scripts\dashboard.py --open` |
+| — | Wiki graph: `python scripts\stage_wiki_graph.py` |
+| — | Zoom VTT → notes: invoke **lecture-recording-to-lecture-notes** |
 
 ## Already done (as of 2026-09-12)
 

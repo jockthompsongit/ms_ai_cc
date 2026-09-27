@@ -7,3 +7,6 @@ VAULT_ROOT = Path(r"C:\Users\jockt\Dropbox\Vandy_MS_AI")
 CONTENT_DIR = VAULT_ROOT / "Content"
 RAW_DIR = VAULT_ROOT / "raw"
 WIKI_DIR = VAULT_ROOT / "wiki"
+# Sibling clone of https://github.com/vanderbilt-ms-ai/wiki-to-graph
+WIKI_TO_GRAPH_ROOT = Path(r"C:\Users\jockt\dev\wiki-to-graph")
+WIKI_GRAPH_OUT = WIKI_TO_GRAPH_ROOT / "build" / "vandy-ms-ai"

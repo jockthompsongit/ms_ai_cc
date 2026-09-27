@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-12
+Updated: 2026-09-27
 
 ## What's working
 
@@ -12,6 +12,9 @@ Updated: 2026-09-12
 - **Cursor rules:** `ms-ai-core.mdc` (always) + Librarian / Tutor / Homework / US Signal
 - **Docs:** README, CONTEXT, CHEATSHEET, QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE refreshed 2026-09-12
 - **Local dashboard:** `python scripts/dashboard.py` → http://127.0.0.1:8765 (markdown + vault probes; no write-back)
+- **wiki-to-graph:** cloned at `C:\Users\jockt\dev\wiki-to-graph` — run `python scripts/stage_wiki_graph.py` to flatten + build + open viewer
+- **Lecture-notes skill:** `.cursor/skills/lecture-recording-to-lecture-notes/` — Zoom VTT (+ optional mp4/slides) → `raw/.../lecture-notes/`
+- **Voice layer:** `voices/house.md` + `voices/professors/darrah.md` (Tutor / Homework). Syllabus outcomes not pasted yet — vault unreachable 2026-09-27.
 
 ## Gaps
 
