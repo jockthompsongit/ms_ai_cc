@@ -1,5 +1,5 @@
 {
-  "_about": "Web readings and resource links posted in Brightspace (AI 5100, org unit 670098), read 2026-10-03. PDFs are tracked as files in Coursework/, not here. capture=false means the page needs a Vanderbilt login or is a repo/tool, so capture_links.py skips it.",
+  "_about": "Web readings and resource links posted in Brightspace (AI 5100, org unit 670098), read 2026-10-03. PDFs are tracked as files in Coursework/, not here. capture=false means the page needs a Vanderbilt login or is a repo/tool, so capture_links.py skips it. This repo is PUBLIC: store only public URLs; never Zoom, Box, Brightspace or other access-granting share links.",
   "readings": [
     {"week": 1, "title": "The Surprising Power of Next Word Prediction: Large Language Models Explained, Part 1 (CSET)", "url": "https://cset.georgetown.edu/article/the-surprising-power-of-next-word-prediction-large-language-models-explained-part-1/", "kind": "article", "capture": true},
     {"week": 2, "title": "Transformer Explainer (Polo Club)", "url": "https://poloclub.github.io/transformer-explainer/", "kind": "tool", "capture": false},

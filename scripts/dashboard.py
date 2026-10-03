@@ -671,6 +671,12 @@ def build_page(today: date | None = None) -> str:
 
 class DashboardHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa: N802
+        # Block DNS-rebinding: a remote page resolving its own name to 127.0.0.1
+        # could otherwise read the dashboard. Only accept loopback Host headers.
+        host = (self.headers.get("Host") or "").rsplit(":", 1)[0].strip("[]").lower()
+        if host not in ("127.0.0.1", "localhost", "::1", self.server.server_address[0]):
+            self.send_error(403, "Forbidden host")
+            return
         path = urlparse(self.path).path
         if path not in ("/", "/index.html", "/dashboard"):
             self.send_error(404, "Not found")
