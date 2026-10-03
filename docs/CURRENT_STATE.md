@@ -23,6 +23,8 @@ Updated: 2026-10-03
 - **Render Slack bot (live 2026-10-03):** `bot/` + `render.yaml`, setup in `docs/RENDER.md`. Semantic router (Haiku 4.5 classifier → Haiku 4.5 / Sonnet 5.5 / Opus 5.5), read-only Dropbox tools, briefs in-worker. 20 offline tests pass (`pytest tests`). Smoke test: "what's due" → Haiku 4.5, $0.007. Desktop Slack routines disabled.
 - **Desktop sync routine** `ms-ai-brightspace-sync` (6:30 AM/PM): Brightspace → readings → transcripts → `pending_work.py --publish` → tutor packs. Posts nothing.
 
+- **Capture system (2026-10-03):** Brightspace snapshot (54 items) → `capture_ledger.py` tracks posted → acquired → converted → digested → integrated; `course-capture` skill holds the procedures; nightly `ms-ai-librarian` routine ingests ~10 items/run; `file_transcripts.py` also files Brightspace downloads. Weeks 3–5 converted. 27 offline tests.
+
 ## Gaps
 
 - **Weeks 3–6 not converted or ingested** (all in `Coursework/`). Weeks 3–4 have Zoom VTTs. Module ends Oct 16.

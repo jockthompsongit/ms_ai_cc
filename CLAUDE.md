@@ -19,7 +19,8 @@ Use the repo venv; `python3` does not exist on this machine.
 - Dashboard: `.venv\Scripts\python.exe scripts\dashboard.py --open` (or `--print-once` to check output)
 - Wiki graph: `.venv\Scripts\python.exe scripts\stage_wiki_graph.py` (`--dry-run`, `--no-open`, `--validate`)
 - Tests (offline, no API spend): `.venv\Scripts\python.exe -m pytest tests -q`. Run them before pushing changes to `bot/`; pushes to `main` redeploy the Render bot.
-- Status for the Render bot: `.venv\Scripts\python.exe scripts\pending_work.py --publish`
+- Capture ledger (what's posted vs captured vs in the wiki): `.venv\Scripts\python.exe scripts\capture_ledger.py [--week N]`; procedures in the `course-capture` skill
+- Status for the Render bot: `.venv\Scripts\python.exe scripts\pending_work.py --publish` (also rewrites the ledger)
 - Bot deps go in `bot/requirements.txt`. New deps for convert go in `scripts/requirements.txt`. Skill scripts print an install hint instead of installing.
 
 ## Rules

@@ -1,5 +1,9 @@
 # AI 5100 course map (from Brightspace)
 
+> **Superseded by the capture ledger (2026-10-03).** The live, item-by-item view is
+> `python scripts\capture_ledger.py` → Dropbox `Vandy Other/status/capture-ledger.md`. This page is
+> a human-readable overview kept for reference; routines no longer update it.
+
 Read from Brightspace content (org unit 670098) on 2026-10-03. Brightspace changes on the fly; re-read it before trusting this page for anything due. Zoom recording links are deliberately not stored here (they grant access); open them from Brightspace. Web readings: [readings.json](readings.json).
 
 Transcripts expected: two per week, **live** (Tuesday session) and **async**. Status as of 2026-10-03:

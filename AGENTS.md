@@ -40,6 +40,10 @@ Default (Ops): use `command-center/HOME.md` for priorities. Working contract for
 
 ## Operations
 
+### Capture ledger
+
+Every Brightspace item is tracked `posted → acquired → converted → digested → integrated` by `scripts/capture_ledger.py` (snapshot and ledger in Dropbox `Vandy Other/status/`). The `course-capture` skill (`.claude/skills/course-capture/`) owns the procedures: Brightspace snapshot, "download pending", ingest, audit. Routines: `ms-ai-brightspace-sync` (6:30 AM/PM, mechanical) and `ms-ai-librarian` (11 PM, ingest). A week is done when every content item is integrated into `lectures/Week-NN.md`.
+
 ### Ingest
 
 One source at a time. Read source → discuss takeaways if useful → write/update wiki pages (often 10–15) → update `wiki/index.md` → append `wiki/log.md` with prefix `## [YYYY-MM-DD] ingest | Title`. Preserve contradictions across sources.
