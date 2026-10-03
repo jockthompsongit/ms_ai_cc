@@ -16,8 +16,20 @@ from dropbox import DropboxOAuth2FlowNoRedirect
 
 
 def main() -> int:
-    app_key = input("Dropbox app key: ").strip()
-    app_secret = getpass.getpass("Dropbox app secret (hidden): ").strip()
+    import sys
+
+    # The app key is not secret, so it may be passed as an argument; the secret never is
+    app_key = sys.argv[1].strip() if len(sys.argv) > 1 else input("Dropbox app key: ").strip()
+    print(f"   (received a {len(app_key)}-character key)")
+    if len(app_key) < 10:
+        print("   That looks wrong. Re-run and paste the App key from the app's Settings tab.")
+        return 1
+    app_secret = getpass.getpass("Dropbox app secret (hidden; Ctrl+V then Enter): ").strip()
+    # Dropbox app secrets are 15 characters; an empty or short value means the paste failed
+    print(f"   (received a {len(app_secret)}-character secret)")
+    if len(app_secret) < 10:
+        print("   That looks wrong. Re-run and paste the App secret from the app's Settings tab.")
+        return 1
     flow = DropboxOAuth2FlowNoRedirect(
         app_key,
         consumer_secret=app_secret,
@@ -25,8 +37,16 @@ def main() -> int:
         scope=["files.metadata.read", "files.content.read"],
     )
     print("\n1. Open this URL and click Allow:\n   " + flow.start())
-    code = input("2. Paste the authorization code: ").strip()
-    result = flow.finish(code)
+    code = input("2. Paste the authorization code (the whole thing, right away): ").strip()
+    print(f"   (received a {len(code)}-character code)")
+    try:
+        result = flow.finish(code)
+    except Exception as exc:  # noqa: BLE001 — show Dropbox's reason instead of a bare 400
+        body = getattr(getattr(exc, "response", None), "text", "") or str(exc)
+        print(f"\nDropbox rejected the exchange: {body}")
+        print("Common fixes: re-copy the App secret; use a fresh code (codes are single-use and")
+        print("expire in minutes); make sure the Permissions tab was saved with Submit.")
+        return 1
     print("\nDROPBOX_REFRESH_TOKEN for Render (keep it secret):\n" + result.refresh_token)
     print("Granted scopes:", result.scope)
     return 0
