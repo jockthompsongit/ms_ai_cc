@@ -37,6 +37,8 @@ from vault_paths import COMMAND_CENTER, COURSEWORK_DIR, RAW_DIR, WIKI_DIR
 
 STATUS_DIR = WIKI_DIR.parent / "status"
 SNAPSHOT = STATUS_DIR / "brightspace-snapshot.json"
+# Items Jock chose not to capture: {"skip": {"<topic id>": "reason"}}
+SKIPS = STATUS_DIR / "capture-skips.json"
 READINGS = COMMAND_CENTER / "readings.json"
 LECTURES = WIKI_DIR / "courses" / "AI-5100" / "lectures"
 LECTURE_NOTES = WIKI_DIR / "courses" / "AI-5100" / "lecture-notes"
@@ -159,6 +161,14 @@ def eval_file(it: dict) -> Item:
     elif it["k"] == "transcript":
         notes = notes_by_transcript().get(it["f"].lower())
         if not notes:
+            # A posted transcript often duplicates the Zoom VTT of the same session; notes for
+            # that VTT cover it (e.g. Week 6 session-transcript.pdf == the async recording)
+            kind = "async" if "async" in it["t"].lower() or "session" in it["f"].lower() else "live"
+            for vtt, vkind in week_transcripts(it["w"]):
+                if vkind == kind and vtt.name.lower() in notes_by_transcript():
+                    notes = notes_by_transcript()[vtt.name.lower()]
+                    break
+        if not notes:
             item.next_action = f"lecture notes from `{it['f']}` (converted text in raw)"
             return item
         item.evidence["notes"] = str(notes.relative_to(WIKI_DIR))
@@ -264,10 +274,14 @@ def build() -> dict:
     added = sync_readings(items_raw)
     readings = {norm_url(r["url"]): r for r in json.loads(READINGS.read_text(encoding="utf-8"))["readings"]}
 
+    skips = json.loads(SKIPS.read_text(encoding="utf-8")).get("skip", {}) if SKIPS.is_file() else {}
+
     items: list[Item] = []
     for it in items_raw:
         k = it["k"]
-        if k in ("paper", "file", "slides", "transcript"):
+        if str(it["id"]) in skips:
+            items.append(Item(it["id"], it["w"], it["t"], k, "skipped", "", {"reason": skips[str(it["id"])]}))
+        elif k in ("paper", "file", "slides", "transcript"):
             items.append(eval_file(it))
         elif k == "link":
             items.append(eval_link(it, readings))
@@ -311,7 +325,7 @@ def to_markdown(ledger: dict, week: int | None = None) -> str:
         "|------|-----------|--------|----------|",
     ]
     for wk, s in ledger["weeks"].items():
-        stages = ", ".join(f"{k} {v}" for k, v in sorted(s["stages"].items(), key=lambda kv: (STAGES + ["manual", "tracked"]).index(kv[0])))
+        stages = ", ".join(f"{k} {v}" for k, v in sorted(s["stages"].items(), key=lambda kv: (STAGES + ["manual", "skipped", "tracked"]).index(kv[0])))
         lines.append(f"| {wk} | {s['progress']} | {stages} | {'yes' if s['complete'] else 'no'} |")
     lines += ["", "## Next actions", ""]
     for it in ledger["items"]:

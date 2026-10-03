@@ -26,6 +26,13 @@ done, write the rule here and say which line changed.
 
 - Ingest runs nightly and on request ("process pending", "ingest week N").
 - Downloads happen only in a live session, as one batch Jock approves.
+- Zoom: download the transcript only, never video. The player loads it from `/rec/play/vtt`; save it
+  as `GMT<YYYYMMDD>-<HHMMSS>_Recording.transcript.vtt` (UTC start time from the page's
+  `/play/info/` response) so `file_transcripts.py` can place it. Avoid "Download (N files)", which
+  includes the video.
+- Items Jock declines go in `Vandy Other/status/capture-skips.json` as
+  `{"skip": {"<topic id>": "reason"}}`; the ledger marks them `skipped` and stops asking.
+  (Skipped so far: the cohort intake survey results.)
 
 ## Hard rules
 
@@ -62,10 +69,13 @@ on the previous snapshot.
 2. Brightspace files: in Chrome, navigate to
    `https://brightspace.vanderbilt.edu/d2l/le/content/670098/topics/files/download/<topic id>/DirectFileTopicDownload`
    (topic id = the item's `id` in the snapshot). Chrome saves it to Downloads.
-3. Zoom transcripts: open the recording from its Brightspace topic
-   (`https://brightspace.vanderbilt.edu/d2l/le/lessons/670098/topics/<id>`, then its link), click
-   **Download** on the Zoom page and choose the audio transcript (`.vtt`) only, never the video.
-   If Zoom offers no transcript, report it; the recording may still be processing.
+3. Zoom transcripts: on a Brightspace page, fetch `/d2l/api/le/1.99/670098/content/topics/<id>`
+   and navigate to its `Url` (do not print or store the link). After ~7 s, in the Zoom page take the
+   `/play/info/` and `/rec/play/vtt` resource URLs from `performance.getEntriesByType('resource')`,
+   read `fileStartTime` from the info JSON, fetch the VTT text and save it with a temporary
+   `<a download="GMT<YYYYMMDD>-<HHMMSS>_Recording.transcript.vtt">` blob link (UTC time).
+   Transcript only, never video. If there is no `/rec/play/vtt`, report it: the recording may
+   still be processing or have no transcript.
 4. Run `file_transcripts.py`, then `capture_ledger.py`, and report what moved to `acquired`.
 
 ## 3. Ingest (nightly Librarian routine, or "process pending" / "ingest week N")
