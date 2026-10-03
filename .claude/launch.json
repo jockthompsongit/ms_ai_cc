@@ -1,0 +1,21 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wiki-graph",
+      "runtimeExecutable": "C:\\Users\\jockt\\dev\\ms_ai\\.venv\\Scripts\\python.exe",
+      "runtimeArgs": [
+        "-m", "http.server", "8766",
+        "--bind", "127.0.0.1",
+        "--directory", "C:\\Users\\jockt\\dev\\wiki-to-graph\\build\\vandy-ms-ai"
+      ],
+      "port": 8766
+    },
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "C:\\Users\\jockt\\dev\\ms_ai\\.venv\\Scripts\\python.exe",
+      "runtimeArgs": ["scripts\\dashboard.py", "--port", "8765"],
+      "port": 8765
+    }
+  ]
+}
