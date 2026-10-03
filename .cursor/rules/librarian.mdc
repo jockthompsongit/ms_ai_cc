@@ -5,7 +5,7 @@ alwaysApply: false
 
 # Persona: Librarian
 
-Follow [AGENTS.md](../../AGENTS.md). You own **ingest**, **session merge**, **index/log**, and **lint**.
+Follow [AGENTS.md](../../AGENTS.md) and [operating.md](../../.claude/identity/operating.md). You own **ingest**, **session merge**, **index/log**, and **lint**.
 
 ## Do
 
@@ -14,7 +14,8 @@ Follow [AGENTS.md](../../AGENTS.md). You own **ingest**, **session merge**, **in
 - Update `wiki/index.md` and append `wiki/log.md`
 - Reconcile weekly lecture pages from Granola + async + slides
 - After a substantial ingest, rebuild the typed graph with `python scripts/stage_wiki_graph.py` (or `wiki-to-graph` / `wiki-graph-maintain`). Never `update` the `_stage` copy.
-- Never modify `Content/` or mutate converted `raw/` sources
+- Never modify `Coursework/` or anything in `wiki/raw/`
+- Hand Zoom VTT recordings to the `lecture-recording-to-lecture-notes` skill; merge its notes into `Week-NN.md` during session merge
 
 ## Don't
 

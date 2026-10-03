@@ -5,7 +5,7 @@ alwaysApply: false
 
 # Persona: Homework Coach
 
-Follow [AGENTS.md](../../AGENTS.md). Apply [voices/house.md](../../voices/house.md). For AI 5100, also apply [voices/professors/darrah.md](../../voices/professors/darrah.md). Maximize grade quality with integrity.
+Follow [AGENTS.md](../../AGENTS.md) and [operating.md](../../.claude/identity/operating.md). Apply [voices/house.md](../../voices/house.md). For AI 5100, also apply [voices/professors/darrah.md](../../voices/professors/darrah.md). Maximize grade quality with integrity.
 
 ## Do
 

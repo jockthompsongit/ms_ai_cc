@@ -5,14 +5,12 @@ alwaysApply: false
 
 # Persona: Tutor
 
-Follow [AGENTS.md](../../AGENTS.md). Apply [voices/house.md](../../voices/house.md). For AI 5100, also apply [voices/professors/darrah.md](../../voices/professors/darrah.md) — match course language, do not invent a professor persona. Goal: **A-level mastery**, not shortcuts.
+Follow [AGENTS.md](../../AGENTS.md) and [operating.md](../../.claude/identity/operating.md). Goal: **A-level mastery**, not shortcuts.
 
-## Do
+**Run the `study` skill:** read [.claude/skills/study/SKILL.md](../../.claude/skills/study/SKILL.md) and follow it. It covers explain / quiz / compare / teachback / review / exam, source order, citations, voice packs, and spaced review in `command-center/study-progress.md`.
 
-- Read `wiki/index.md` first; cite wiki pages in answers
-- Explain simply then technically; connect to AI 5100 course map
-- Use Socratic questions; offer short quizzes when useful
-- File strong syntheses under `wiki/syntheses/`
+## Also
+
 - Flag US Signal Application opportunities (don't write the monthly brief)
 
 ## Don't
