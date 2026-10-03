@@ -325,6 +325,7 @@ def render_html(
     calendar: list[CalendarRow],
     captures: list[CaptureStatus],
     today: date,
+    ledger_html: str = "",
 ) -> str:
     focus_open = sum(1 for i in focus if not i.done)
     focus_lis = []
@@ -596,6 +597,22 @@ def render_html(
     word-break: break-all;
   }}
   .muted {{ color: var(--muted); }}
+  details.ledger {{
+    border-bottom: 1px solid var(--line);
+    padding: 0.6rem 0;
+  }}
+  details.ledger summary {{
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }}
+  details.ledger summary::before {{ content: "▸"; color: var(--accent); }}
+  details.ledger[open] summary::before {{ content: "▾"; }}
+  details.ledger table {{ margin-top: 0.6rem; }}
+  details.ledger a {{ color: var(--accent); text-decoration: none; }}
+  details.ledger a:hover {{ text-decoration: underline; }}
   footer {{
     margin-top: 2.5rem;
     padding-top: 1rem;
@@ -626,9 +643,14 @@ def render_html(
       </div>
     </section>
 
+    <section style="margin-bottom:2.5rem">
+      <h2>Capture ledger</h2>
+      {ledger_html}
+    </section>
+
     <section class="secondary">
       <div>
-        <h2>Capture checklist</h2>
+        <h2>Folder check (current weeks)</h2>
         {capture_html}
         <p class="muted" style="margin-top:0.75rem;font-size:0.85rem">Content = Coursework week folder. Sessions = any file under Coursework/…/sessions/. Raw = converted week folder. Lecture = wiki lectures/Week-NN.md.</p>
         <h2 style="margin-top:1.75rem">Coursework inbox <span class="count">{len(inbox_items)} item(s)</span></h2>
@@ -656,6 +678,71 @@ def render_html(
 """
 
 
+STAGE_CLASS = {
+    "posted": "st-todo",
+    "acquired": "st-progress",
+    "converted": "st-progress",
+    "digested": "st-submitted",
+    "integrated": "st-graded",
+    "manual": "st-other",
+    "skipped": "st-other",
+    "tracked": "st-other",
+}
+
+
+def render_ledger(ledger: dict) -> str:
+    """Capture ledger panel: per-week progress, then each item with its next action and files."""
+    from vault_paths import COURSEWORK_DIR as CW
+
+    def evidence_links(evidence: dict) -> str:
+        out = []
+        for key, rel in evidence.items():
+            if key in ("note", "reason"):
+                out.append(f'<span class="muted">{esc(str(rel))}</span>')
+                continue
+            if key == "file":  # Coursework is outside the Obsidian vault; show the path only
+                out.append(f'<span class="muted" title="{esc(str(CW / rel))}">file</span>')
+                continue
+            target = WIKI_DIR / rel
+            href = link_href(target) if target.exists() else None
+            label = esc(key)
+            out.append(f'<a href="{esc(href)}" title="{esc(str(rel))}">{label}</a>' if href else label)
+        return " · ".join(out)
+
+    by_week: dict[str, list[dict]] = {}
+    for it in ledger["items"]:
+        by_week.setdefault(str(it["week"]), []).append(it)
+
+    blocks = []
+    for wk, summary in ledger["weeks"].items():
+        items = by_week.get(wk, [])
+        open_attr = "" if summary["complete"] else " open"
+        rows = []
+        for it in sorted(items, key=lambda i: list(STAGE_CLASS).index(i["stage"]) if i["stage"] in STAGE_CLASS else 99):
+            rows.append(
+                "<tr>"
+                f'<td><span class="badge {STAGE_CLASS.get(it["stage"], "st-other")}">{esc(it["stage"])}</span></td>'
+                f'<td>{esc(it["title"])}<span class="path">{esc(it["kind"])}</span></td>'
+                f'<td>{esc(it["next_action"]) or "<span class=muted>done</span>"}</td>'
+                f'<td>{evidence_links(it.get("evidence", {}))}</td>'
+                "</tr>"
+            )
+        label = "Course information" if wk == "0" else f"Week {wk}"
+        done = " · complete" if summary["complete"] else ""
+        blocks.append(
+            f'<details class="ledger"{open_attr}><summary><strong>{label}</strong> '
+            f'<span class="count">{esc(summary["progress"])} integrated{done}</span></summary>'
+            "<table><thead><tr><th>Stage</th><th>Item</th><th>Next action</th><th>Files</th></tr></thead>"
+            f"<tbody>{''.join(rows)}</tbody></table></details>"
+        )
+    return (
+        f'<p class="muted" style="margin:0 0 0.75rem">posted → acquired → converted → digested → integrated · '
+        f'Brightspace snapshot {esc(str(ledger.get("snapshot_taken_at")))} · ledger {esc(ledger["generated_at"])}. '
+        "Open a file in Obsidian to review or correct it; say \"process pending\" or \"ingest week N\" to run the Librarian.</p>"
+        + "".join(blocks)
+    )
+
+
 def build_page(today: date | None = None) -> str:
     today = today or date.today()
     home_md = read_text(COMMAND_CENTER / "HOME.md")
@@ -666,7 +753,13 @@ def build_page(today: date | None = None) -> str:
     hw_headers, hw_rows = parse_pipe_table(hw_md)
     calendar = parse_calendar(cal_md, today)
     captures = [probe_capture(w) for w in weeks_to_show(calendar, today)]
-    return render_html(focus, hw_headers, hw_rows, calendar, captures, today)
+    try:
+        import capture_ledger  # lazy: capture_ledger imports this module indirectly
+
+        ledger_html = render_ledger(capture_ledger.build())
+    except FileNotFoundError:
+        ledger_html = "<p class='muted'>No Brightspace snapshot yet. Run the sync routine or say \"take a Brightspace snapshot\".</p>"
+    return render_html(focus, hw_headers, hw_rows, calendar, captures, today, ledger_html)
 
 
 class DashboardHandler(BaseHTTPRequestHandler):
