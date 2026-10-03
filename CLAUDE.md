@@ -18,7 +18,9 @@ Use the repo venv; `python3` does not exist on this machine.
 - Convert a week: `.venv\Scripts\python.exe scripts\convert_content.py --week N` (add `--dry-run` first; `--force` only when Jock asks to overwrite raw)
 - Dashboard: `.venv\Scripts\python.exe scripts\dashboard.py --open` (or `--print-once` to check output)
 - Wiki graph: `.venv\Scripts\python.exe scripts\stage_wiki_graph.py` (`--dry-run`, `--no-open`, `--validate`)
-- New deps for convert go in `scripts/requirements.txt`. Skill scripts print an install hint instead of installing.
+- Tests (offline, no API spend): `.venv\Scripts\python.exe -m pytest tests -q`. Run them before pushing changes to `bot/`; pushes to `main` redeploy the Render bot.
+- Status for the Render bot: `.venv\Scripts\python.exe scripts\pending_work.py --publish`
+- Bot deps go in `bot/requirements.txt`. New deps for convert go in `scripts/requirements.txt`. Skill scripts print an install hint instead of installing.
 
 ## Rules
 

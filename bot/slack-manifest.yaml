@@ -1,0 +1,35 @@
+# Slack app manifest — paste at https://api.slack.com/apps → Create New App → From a manifest.
+# Socket Mode: no public URL. After creating:
+#   1. Basic Information → App-Level Tokens → generate one with scope connections:write  → SLACK_APP_TOKEN (xapp-…)
+#   2. Install to workspace (an admin may need to approve)                               → SLACK_BOT_TOKEN (xoxb-…)
+#   3. In Slack: /invite @MS AI Assistant in #ms-ai
+display_information:
+  name: MS AI Assistant
+  description: Jock's AI 5100 study assistant (answers in #ms-ai, posts briefs).
+  background_color: "#2a6b61"
+features:
+  bot_user:
+    display_name: MS AI Assistant
+    always_online: true
+  app_home:
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: false
+oauth_config:
+  scopes:
+    bot:
+      - app_mentions:read
+      - chat:write
+      - groups:history   # read messages in the private #ms-ai channel it is invited to
+      - im:history       # DMs to the bot
+      - reactions:write  # 👀 acknowledgement
+settings:
+  event_subscriptions:
+    bot_events:
+      - app_mention
+      - message.groups
+      - message.im
+  interactivity:
+    is_enabled: false
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false

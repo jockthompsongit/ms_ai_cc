@@ -1,0 +1,41 @@
+# Render Blueprint — New → Blueprint → connect this repo.
+# Secrets marked sync: false are entered in the Render dashboard, never committed.
+services:
+  - type: worker
+    name: msai-slack-bot
+    runtime: python
+    plan: starter            # background workers have no free tier
+    branch: main
+    autoDeploy: true         # pushes to main (ops files, bot code) redeploy automatically
+    buildFilter:
+      paths:
+        - bot/**
+        - command-center/**
+        - render.yaml
+    buildCommand: pip install -r bot/requirements.txt
+    startCommand: python -m bot.app
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      - key: SLACK_APP_TOKEN
+        sync: false
+      - key: DROPBOX_APP_KEY
+        sync: false
+      - key: DROPBOX_APP_SECRET
+        sync: false
+      - key: DROPBOX_REFRESH_TOKEN
+        sync: false
+      - key: SLACK_CHANNEL_ID
+        value: C0C6K3LATKK
+      - key: SLACK_OWNER_USER_ID
+        value: U0BUHB47FLJ
+      - key: VAULT_ROOT
+        value: /Vandy_MS_AI
+      - key: BOT_TIMEZONE
+        value: America/Chicago
+      - key: BRIEFS_ENABLED
+        value: "true"

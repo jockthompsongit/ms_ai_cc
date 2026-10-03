@@ -24,6 +24,8 @@ from vault_paths import COMMAND_CENTER, COURSEWORK_DIR, RAW_DIR, WIKI_DIR
 
 COURSE_PREFIX = "AI 5100"
 EXPECTED_TRANSCRIPTS = 2
+# Read by the Render Slack bot through the Dropbox API
+STATUS_FILE = WIKI_DIR.parent / "status" / "pending.json"
 CONVERTIBLE = {".pdf", ".pptx", ".docx", ".html", ".htm", ".md", ".txt"}
 
 
@@ -146,9 +148,22 @@ def to_markdown(data: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Report pending course work")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--publish",
+        action="store_true",
+        help=f"Also write the snapshot (JSON + markdown) to {STATUS_FILE} for the Render Slack bot",
+    )
     args = parser.parse_args()
     data = collect()
     print(json.dumps(data, indent=2) if args.json else to_markdown(data))
+    if args.publish:
+        from datetime import datetime
+
+        data["generated_at"] = datetime.now().astimezone().isoformat(timespec="minutes")
+        data["markdown"] = to_markdown(data)
+        STATUS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        STATUS_FILE.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        print(f"Published {STATUS_FILE}")
     return 0
 
 
