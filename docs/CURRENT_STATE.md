@@ -18,7 +18,7 @@ Updated: 2026-10-03
 - **Pending work:** `scripts/pending_work.py` (transcripts, notes, conversion, lecture pages, reading summaries, homework).
 - **Transcripts:** `scripts/file_transcripts.py` files Zoom VTT downloads by week + live/async. Automatic in-browser capture was blocked by the safety classifier; downloads stay manual.
 - **Tutor packs:** `scripts/build_tutor_pack.py --all` → Dropbox `Vandy Other/tutor-packs/` for Claude/ChatGPT Projects.
-- **Slack #ms-ai** (`command-center/slack.md`): scheduled tasks `ms-ai-daily-brief` (weekdays ~7:40), `ms-ai-week-ahead` (Sun ~6:15 PM), `ms-ai-slack-inbox` (every 30 min, 7 AM–10 PM). Desktop app must be open.
+- **Slack #ms-ai** (`command-center/slack.md`): served by the Render bot below. The earlier desktop routines (`ms-ai-daily-brief`, `ms-ai-week-ahead`, `ms-ai-slack-inbox`) are disabled and kept only as a fallback.
 
 - **Render Slack bot (live 2026-10-03):** `bot/` + `render.yaml`, setup in `docs/RENDER.md`. Semantic router (Haiku 4.5 classifier → Haiku 4.5 / Sonnet 5.5 / Opus 5.5), read-only Dropbox tools, briefs in-worker. 20 offline tests pass (`pytest tests`). Smoke test: "what's due" → Haiku 4.5, $0.007. Desktop Slack routines disabled.
 - **Desktop sync routine** `ms-ai-brightspace-sync` (6:30 AM/PM): Brightspace → readings → transcripts → `pending_work.py --publish` → tutor packs. Posts nothing.
