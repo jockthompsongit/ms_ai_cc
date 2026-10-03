@@ -64,3 +64,20 @@
 **Decision:** Personality is a third axis, not a split of `AGENTS.md`. House register: [voices/house.md](../voices/house.md). Per-instructor packs under `voices/professors/` — first pack [darrah.md](../voices/professors/darrah.md) for AI 5100. Dispatch from Tutor and Homework Coach rules only. Librarian / US Signal Advisor stay on house voice.
 
 **Constraint:** Packs are evidence from syllabus / briefs / lecture wiki. No invented rubric text, no mannerism imitation. Vault syllabus outcomes still a gap to paste when Dropbox is available.
+
+## 2026-10-03 — Follow the vault relayout; adopt personal_assistant patterns
+
+**Context:** The Dropbox vault was reorganized (Sep 26–29): dumps moved to `Coursework/`, the wiki to `Vandy Other/wiki/` (now the Obsidian root) with `raw/` inside it, and the archive to `Vandy Other/_archive/`. Every script and doc path broke. Separately, the class-built `personal_assistant` template (Dropbox `Vandy_MS_AI/personal_assistant`) had better agent mechanics than this repo.
+
+**Decision:**
+- Repoint `scripts/vault_paths.py` and all docs and rules to the new layout. The vault's `Vandy Other/AGENTS.md` becomes a pointer to the repo copy so the two can't drift.
+- **Claude Code is primary, Cursor still supported.** New `CLAUDE.md` loader (`@AGENTS.md`, `@.claude/identity/operating.md`), written per `.claude/claude-md-guide.md`.
+- Adopt PA's **operating contract**: draft-never-send, tool evidence, verify before done, and the self-update loop when corrected. Not adopted: the Cato identity (soul, persona, user, voice), `/setup`, and the non-MS AI lanes.
+- **Guardrails as permissions, not prose:** `.claude/settings.json` denies Edit/Write on `Coursework/`, `wiki/raw/` and `_archive/`, and Read on `Admin/`.
+- **One skill copy, in `.claude/skills/`.** Removed `.cursor/skills/` and `.agents/`. Cursor rules point at the skill files.
+- Vendored skills carry provenance: `UPSTREAM.md` (pinned commit, license, local changes) and `SKILL.upstream.md`, plus a `## Jock's Preferences` section where corrections accumulate.
+- New `study` skill replaces the Tutor rule's mechanics; spaced review lives in `command-center/study-progress.md`.
+- **Wiki format unchanged:** nested `concepts/`, `courses/` and wiki-author typed sections. PA's flat `notes/` + four-section format was not adopted.
+- Lecture-notes output moves from `raw/` to `wiki/courses/AI-5100/lecture-notes/week-NN/`, because derived notes aren't raw and `raw/` is now edit-denied. Graph staging skips `lecture-notes/`.
+
+**Supersedes:** path details in the 2026-09-05/08/27 entries above. The skill location in "wiki-to-graph as project Cursor skills" and "Lecture recording → notes skill" is now `.claude/skills/`, and those skills no longer pip-install on their own.

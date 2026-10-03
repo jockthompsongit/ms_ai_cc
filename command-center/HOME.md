@@ -8,7 +8,7 @@
 ## This week focus
 
 - [ ] Confirm HW2 due date / rubric on Brightspace → update [homework-queue.md](homework-queue.md)
-- [ ] Drop Granola into `Content\AI 5100 Week N\sessions\` going forward
+- [ ] Drop Granola into `Coursework\AI 5100 Week N\sessions\` going forward
 - [ ] Finish HW Week 2 paper briefs (Homework Coach)
 - [ ] Prep Week 3 dump when Brightspace posts
 
@@ -26,13 +26,14 @@
 - [academic-calendar.md](academic-calendar.md)
 - [grade-tracker.md](grade-tracker.md)
 - [../us-signal/applications-log.md](../us-signal/applications-log.md)
-- Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` · Wiki index: `wiki\index.md`
+- Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` · Wiki index: `Vandy Other\wiki\index.md`
+- Study: say "quiz me" / "review" (`study` skill) · progress in [study-progress.md](study-progress.md)
 
 ## Capture checklist (every class)
 
 | Step | Done? |
 |------|-------|
-| Brightspace/async dumped to Content | |
+| Brightspace/async dumped to Coursework | |
 | Granola → `sessions/granola-YYYYMMDD.md` | |
 | `python scripts\convert_content.py --week N` | |
 | Optional Zoom transcript/link note | |

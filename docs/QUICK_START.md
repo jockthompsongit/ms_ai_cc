@@ -1,11 +1,11 @@
 # Quick start
 
-Vanderbilt MS AI Command Center: Cursor + Obsidian. Local ops dashboard optional; no hosted web app, no embeddings DB.
+Vanderbilt MS AI Command Center: Claude Code (primary) or Cursor + Obsidian. Local ops dashboard optional; no hosted web app, no embeddings DB.
 
 ## One-time setup
 
-1. Open `C:\Users\jockt\dev\ms_ai` in Cursor
-2. Open Obsidian vault root: `C:\Users\jockt\Dropbox\Vandy_MS_AI` (not a nested folder)
+1. Open `C:\Users\jockt\dev\ms_ai` in Claude Code or Cursor. Claude Code loads `CLAUDE.md` (which pulls in `AGENTS.md` and `.claude/identity/operating.md`).
+2. Open Obsidian on the wiki folder: `C:\Users\jockt\Dropbox\Vandy_MS_AI\Vandy Other\wiki`
 3. Python env:
 
 ```powershell
@@ -22,20 +22,14 @@ pip install -r scripts\requirements.txt
 
 | Step | Action |
 |------|--------|
-| 1 | Dump materials → `Content\AI 5100 Week N\` |
-| 2 | Granola → `Content\...\sessions\granola-YYYYMMDD.md` |
-| 3 | `python scripts\convert_content.py --week N` |
-| 4 | Cursor: **Librarian** — ingest / session merge |
-| 5 | **Tutor** / **Homework Coach** / **US Signal Advisor** as needed |
+| 1 | Dump materials → `Coursework\AI 5100 Week N\` |
+| 2 | Granola → `Coursework\...\sessions\granola-YYYYMMDD.md` |
+| 3 | `python scripts\convert_content.py --week N --dry-run`, then without `--dry-run` |
+| 4 | No Granola? Turn the Zoom VTT into notes (lecture-notes skill) |
+| 5 | **Librarian**: ingest / session merge |
+| 6 | **Tutor** (`study` skill) / **Homework Coach** / **US Signal Advisor** as needed |
 | — | Ops glance: `python scripts\dashboard.py --open` |
 | — | Wiki graph: `python scripts\stage_wiki_graph.py` (or say **turn my wiki into a graph**) |
-| — | Zoom VTT → notes: invoke **lecture-recording-to-lecture-notes** |
-
-## Already done (as of 2026-09-12)
-
-- Weeks 1–2 converted under `raw/courses/AI-5100/`
-- Lecture pages: `wiki/courses/AI-5100/lectures/Week-01.md`, `Week-02.md`
-- Repo on GitHub: `jockthompsongit/ms_ai_cc`
 
 ## More detail
 

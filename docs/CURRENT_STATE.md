@@ -1,34 +1,32 @@
 # Current state
 
-Updated: 2026-09-27
+Updated: 2026-10-03
 
 ## What's working
 
-- **Command Center** at `C:\Users\jockt\dev\ms_ai` — docs, AGENTS.md, personas, US Signal templates, convert scripts
-- **GitHub:** https://github.com/jockthompsongit/ms_ai_cc — `main` up to date after docs refresh
-- **Vault** at `C:\Users\jockt\Dropbox\Vandy_MS_AI` — single Obsidian root (`Content` / `raw` / `wiki` / `Templates` / `_archive`)
-- **Convert:** `markitdown[pdf,pptx,docx]` via `.venv` — Weeks 1–2 in `raw/courses/AI-5100/`
-- **Wiki:** course home, syllabus, concepts, Week-01/02 lectures, HW Week 2 stub, `index.md` + `log.md`
-- **Cursor rules:** `ms-ai-core.mdc` (always) + Librarian / Tutor / Homework / US Signal
-- **Docs:** README, CONTEXT, CHEATSHEET, QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE refreshed 2026-09-12
-- **Local dashboard:** `python scripts/dashboard.py` → http://127.0.0.1:8765 (markdown + vault probes; no write-back)
-- **wiki-to-graph:** sibling clone at `C:\Users\jockt\dev\wiki-to-graph` (pulled to `main` 2026-09-27). Four Cursor skills under `.cursor/skills/` (`wiki-to-graph`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`). Build via `python scripts/stage_wiki_graph.py`. Claude Code plugin `wiki-to-graph@wiki-to-graph` is 1.0.0 (marketplace still lists 3 skills; project copy has all 4).
-- **Lecture-notes skill:** `.cursor/skills/lecture-recording-to-lecture-notes/` — Zoom VTT (+ optional mp4/slides) → `raw/.../lecture-notes/`
-- **Voice layer:** `voices/house.md` + `voices/professors/darrah.md` (Tutor / Homework). Syllabus outcomes not pasted yet — vault unreachable 2026-09-27.
+- **Command Center** at `C:\Users\jockt\dev\ms_ai`. GitHub: https://github.com/jockthompsongit/ms_ai_cc
+- **Vault relayout handled (2026-10-03):** sources in `Coursework/`, wiki at `Vandy Other/wiki/`, raw inside the wiki. `scripts/vault_paths.py`, `AGENTS.md`, rules, skills and docs all point there. The vault's `Vandy Other/AGENTS.md` is now a pointer to the repo copy.
+- **Convert:** `convert_content.py` reads `Coursework/`, skips existing raw outputs (`--force` to overwrite), disambiguates slug collisions, and adds a `source_file` header to copied `.md`/`.txt`.
+- **Dashboard:** capture probes work again (Weeks 1–2 show raw + lecture). Quick links open in Obsidian/Cursor. Shows the Coursework inbox.
+- **Graph staging** includes `courses/` (lectures, assignments, syllabus, project) and excludes `raw/` and `lecture-notes/`. 26 pages staged on 2026-10-03.
+- **Calendar:** Weeks 1–8 dated, plus the assessment list, from the vault syllabus page.
+- **Claude Code layer** (adopted from `personal_assistant`): `CLAUDE.md`, `.claude/identity/operating.md` (working contract), `.claude/claude-md-guide.md`, and `.claude/settings.json` deny rules (Coursework, wiki/raw, _archive; no reads of Admin).
+- **Skills (single copy in `.claude/skills/`):** `study` (new; Tutor engine with spaced review), `lecture-recording-to-lecture-notes` (PA version with Jock's Preferences + quiz + wiki linking), the wiki-to-graph family (with `UPSTREAM.md`, `docs/`, `LICENSE.md`), and `ms-ai-paper-tutor`. `.cursor/skills/` and `.agents/` were removed.
 
 ## Gaps
 
-- Granola not yet landing in `Content/.../sessions/` (Week 2 used class notes as live source)
-- Confirm HW2 due date and rubric on Brightspace → update `homework-queue.md`
-- Week 3 Content present; convert + Librarian ingest still pending
-- First US Signal monthly brief not written yet (`us-signal/monthly/`)
-- Grade tracker empty — fill from syllabus weights
+- **Weeks 3–6 not converted or ingested** (all in `Coursework/`). Weeks 3–4 have Zoom VTTs. Module ends Oct 16.
+- **Homework queue is stale:** HW-W2 is still `in_progress`. The syllabus lists HW1 Sep 4, HW2 Sep 25, HW3 Oct 2, HW4 Oct 9 and a midterm Sep 14–18; confirm which assignment HW-W2 is and what's been submitted.
+- `Coursework/_inbox/` has an unsorted homework `.docx`.
+- Granola still not landing in `sessions/`.
+- `study` graded-work default is marked *proposed*, not yet confirmed by Jock.
+- First US Signal monthly brief not written; grade tracker empty.
 
 ## Known issues
 
-- None blocking day-to-day ops
-- Past agent sessions sometimes timed out on long tool runs — prefer small task slices
+- Claude Code deny rules use absolute `//c/...` paths. Confirm in a fresh session that an edit under `wiki/raw/` is denied.
+- Cursor reads skills via the pointer list in `ms-ai-core.mdc`, not native discovery.
 
 ## Current focus
 
-Weekly ops: dump → convert → Librarian ingest. Next academic: HW2 finish + Week 3 convert/ingest. Dashboard for ops glance.
+Convert + ingest Weeks 3–6, reconcile the homework queue against the syllabus, then use `study` for Quiz 3 (Oct 7) prep.
