@@ -29,6 +29,8 @@ class Settings:
     vault_root: str
     timezone: str
     briefs_enabled: bool
+    # Only needed for an API key that is not scoped to a workspace (console → Workspaces → ID)
+    anthropic_workspace_id: str = ""
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -45,4 +47,5 @@ class Settings:
             vault_root=os.environ.get("VAULT_ROOT", "/Vandy_MS_AI").rstrip("/"),
             timezone=os.environ.get("BOT_TIMEZONE", "America/Chicago"),
             briefs_enabled=os.environ.get("BRIEFS_ENABLED", "true").lower() == "true",
+            anthropic_workspace_id=os.environ.get("ANTHROPIC_WORKSPACE_ID", "").strip(),
         )

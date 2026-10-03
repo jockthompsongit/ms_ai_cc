@@ -54,7 +54,9 @@ def thread_history(client, channel: str, thread_ts: str, current_ts: str, owner:
 
 def create_app(settings: Settings) -> tuple[App, anthropic.Anthropic, Vault]:
     app = App(token=settings.slack_bot_token)
-    claude = anthropic.Anthropic()
+    # Org-level API keys must name a workspace on every request
+    workspace_headers = {"anthropic-workspace-id": settings.anthropic_workspace_id} if settings.anthropic_workspace_id else None
+    claude = anthropic.Anthropic(default_headers=workspace_headers)
     vault = Vault(settings.dropbox_app_key, settings.dropbox_app_secret, settings.dropbox_refresh_token, settings.vault_root)
     bot_user = app.client.auth_test()["user_id"]
 

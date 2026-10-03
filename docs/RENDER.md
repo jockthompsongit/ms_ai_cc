@@ -30,7 +30,10 @@ Desktop (when the app is open) ── routine "MS AI Brightspace sync"
 ## One-time setup
 
 1. **Anthropic API key**: console.anthropic.com → API keys. Billed separately from the Claude
-   Pro plan. Consider a monthly spend limit in the console.
+   Pro plan. Consider a monthly spend limit in the console. Create the key **inside a
+   workspace** (Settings → Workspaces → the workspace → API Keys). An org-level key gets
+   `400 ... not scoped to a workspace`; either replace it or set `ANTHROPIC_WORKSPACE_ID`
+   (the workspace's ID, `wrkspc_…`) in Render.
 2. **Dropbox (read-only)**: follow the docstring in `scripts/dropbox_auth.py`
    (create a Scoped, Full Dropbox app with only `files.metadata.read` + `files.content.read`),
    then run `python scripts/dropbox_auth.py` locally to print the refresh token.
