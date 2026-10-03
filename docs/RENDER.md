@@ -24,7 +24,10 @@ Desktop (when the app is open) ── routine "MS AI Brightspace sync"
 - Acts only on messages from `SLACK_OWNER_USER_ID`, in #ms-ai or a DM to the bot.
 - Never writes files, sends email, submits work, or messages anyone else. No Brightspace access
   (that needs Jock's browser, so it stays on the desktop).
-- Each reply ends with the model used and its cost, e.g. `_claude-sonnet-5-5 · $0.014_`.
+- Every reply and brief ends with a footer: model that answered (and any safety fallback), total
+  cost split into answer + router, tokens in/cached/out, and the routing tier with its reason, e.g.
+  `⚙ Opus 5.5 · $0.0412 total (answer $0.0405 + router $0.0007) · 12.3k in (8.2k cached) / 940 out · deep: paper walkthrough`.
+  Cost is computed from API usage at list prices (cache writes 1.25×, cache reads per model).
   Start a message with `!haiku`, `!sonnet` or `!opus` to force a tier.
 
 ## One-time setup

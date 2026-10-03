@@ -61,11 +61,18 @@ def strip_override(text: str) -> tuple[str | None, str]:
     return (tier, rest.strip()) if tier else (None, text)
 
 
-def route(client: anthropic.Anthropic, text: str, context_hint: str = "") -> tuple[Tier, str]:
-    """Return (tier, reason). Falls back to 'standard' if the router call fails."""
+@dataclass(frozen=True)
+class Decision:
+    tier: Tier
+    reason: str
+    cost: float = 0.0  # what the router call itself cost
+
+
+def route(client: anthropic.Anthropic, text: str, context_hint: str = "") -> Decision:
+    """Pick a tier. Falls back to 'standard' if the router call fails."""
     forced, _ = strip_override(text)
     if forced:
-        return TIERS[forced], "forced by Jock"
+        return Decision(TIERS[forced], "forced by Jock")
     try:
         response = client.messages.parse(
             model=ROUTER_MODEL,
@@ -74,12 +81,13 @@ def route(client: anthropic.Anthropic, text: str, context_hint: str = "") -> tup
             messages=[{"role": "user", "content": f"{context_hint}\n\nMessage:\n{text[:4000]}".strip()}],
             output_format=Route,
         )
+        spent = cost_usd(TIERS["simple"], response.usage.input_tokens or 0, response.usage.output_tokens or 0)
         parsed = response.parsed_output
         if parsed is None:
-            return TIERS["standard"], "router returned no decision"
-        return TIERS[parsed.tier], parsed.reason
+            return Decision(TIERS["standard"], "router returned no decision", spent)
+        return Decision(TIERS[parsed.tier], parsed.reason, spent)
     except anthropic.APIError as exc:
-        return TIERS["standard"], f"router unavailable ({type(exc).__name__})"
+        return Decision(TIERS["standard"], f"router unavailable ({type(exc).__name__})")
 
 
 def cost_usd(tier: Tier, input_tokens: int, output_tokens: int, cache_read: int = 0) -> float:

@@ -48,8 +48,8 @@ def test_override_prefix():
 
 
 def test_forced_route_skips_api():
-    tier, reason = router.route(client=None, text="!haiku what's due")  # type: ignore[arg-type]
-    assert tier.model == "claude-haiku-4-5" and reason == "forced by Jock"
+    d = router.route(client=None, text="!haiku what's due")  # type: ignore[arg-type]
+    assert d.tier.model == "claude-haiku-4-5" and d.reason == "forced by Jock" and d.cost == 0
 
 
 class _FailingMessages:
@@ -62,8 +62,8 @@ class _FailingClient:
 
 
 def test_router_failure_falls_back_to_standard():
-    tier, reason = router.route(_FailingClient(), "explain attention")  # type: ignore[arg-type]
-    assert tier.name == "standard" and "unavailable" in reason
+    d = router.route(_FailingClient(), "explain attention")  # type: ignore[arg-type]
+    assert d.tier.name == "standard" and "unavailable" in d.reason
 
 
 def test_cost_math():
@@ -142,3 +142,25 @@ def test_markdown_to_slack():
         "• *HW-W2*: briefs",
         "• see <https://brightspace.vanderbilt.edu|Brightspace>",
     ]
+
+
+def test_footer_shows_model_cost_split_and_tokens():
+    from bot.slackfmt import FOOTER_RE, footer
+
+    ans = agent.Answer(
+        text="x", tier=router.TIERS["deep"], reason="paper walkthrough", cost=0.0405,
+        router_cost=0.0007, input_tokens=4100, cached_tokens=8200, output_tokens=940,
+        served_by="claude-opus-5-5",
+    )
+    line = footer(ans)
+    assert "Opus 5.5" in line and "$0.0412 total" in line
+    assert "answer $0.0405 + router $0.0007" in line
+    assert "12.3k in (8.2k cached) / 940 out" in line and "deep: paper walkthrough" in line
+    assert FOOTER_RE.search("reply" + line)  # thread history strips it
+
+
+def test_footer_flags_fallback_model():
+    from bot.slackfmt import footer
+
+    ans = agent.Answer(text="x", tier=router.TIERS["deep"], reason="r", cost=0.01, served_by="claude-opus-4-8")
+    assert "Opus 4.8 (fallback from Opus 5.5)" in footer(ans)

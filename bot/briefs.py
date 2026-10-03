@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 import anthropic
 
 from .agent import answer, status_digest
-from .slackfmt import to_slack
+from .slackfmt import ERROR_FOOTER, footer, to_slack
 from .vault import Vault
 
 DAILY = """Write my weekday morning brief for Slack. Today is {today}.
@@ -46,7 +46,6 @@ def run_brief(kind: str, client: anthropic.Anthropic, vault: Vault, slack_client
     prompt = template.format(today=today, digest=status_digest(vault))
     try:
         result = answer(client, vault, [], prompt, route_hint="Scheduled brief writing task.")
-        footer = f"\n\n_{result.tier.model} · ${result.cost:.3f}_"
-        _post(slack_client, channel, to_slack(result.text) + footer)
+        _post(slack_client, channel, to_slack(result.text) + footer(result))
     except anthropic.APIError as exc:
-        _post(slack_client, channel, f"Couldn't write the {kind} brief: Claude API error ({type(exc).__name__}).")
+        _post(slack_client, channel, f"Couldn't write the {kind} brief: Claude API error ({type(exc).__name__})." + ERROR_FOOTER)

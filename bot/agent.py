@@ -63,7 +63,16 @@ class Answer:
     text: str
     tier: Tier
     reason: str
-    cost: float
+    cost: float  # the answering model's calls
+    router_cost: float = 0.0
+    input_tokens: int = 0  # uncached input + cache writes
+    cached_tokens: int = 0
+    output_tokens: int = 0
+    served_by: str = ""  # model that actually answered (differs from tier.model after a fallback)
+
+    @property
+    def total_cost(self) -> float:
+        return self.cost + self.router_cost
 
 
 def build_tools(vault: Vault) -> list:
@@ -146,7 +155,8 @@ def answer(
     route_hint: str = "",
 ) -> Answer:
     """Route, then run the tool loop. `history` is prior thread turns (alternating roles)."""
-    tier, reason = route(client, question, route_hint)
+    decision = route(client, question, route_hint)
+    tier = decision.tier
     _, question = strip_override(question)
     messages = [*history, {"role": "user", "content": question}]
 
@@ -160,10 +170,11 @@ def answer(
         **_request_options(tier),
     )
     last = None
-    in_tok = out_tok = cache_tok = 0
+    in_tok = write_tok = out_tok = cache_tok = 0
     for message in runner:
         last = message
-        in_tok += (message.usage.input_tokens or 0) + (message.usage.cache_creation_input_tokens or 0)
+        in_tok += message.usage.input_tokens or 0
+        write_tok += message.usage.cache_creation_input_tokens or 0
         cache_tok += message.usage.cache_read_input_tokens or 0
         out_tok += message.usage.output_tokens or 0
 
@@ -177,7 +188,19 @@ def answer(
             text += "\n\n_(cut off at the length limit; ask me to continue)_"
         if not text:
             text = "I ran out of steps before finishing. Try a narrower question."
-    return Answer(text=text, tier=tier, reason=reason, cost=cost_usd(tier, in_tok, out_tok, cache_tok))
+    # Cache writes bill at 1.25x the input rate (5-minute cache)
+    cost = cost_usd(tier, in_tok, out_tok, cache_tok) + write_tok * tier.input_per_mtok * 1.25 / 1_000_000
+    return Answer(
+        text=text,
+        tier=tier,
+        reason=decision.reason,
+        cost=cost,
+        router_cost=decision.cost,
+        input_tokens=in_tok + write_tok,
+        cached_tokens=cache_tok,
+        output_tokens=out_tok,
+        served_by=getattr(last, "model", "") or tier.model,
+    )
 
 
 def status_digest(vault: Vault) -> str:

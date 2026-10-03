@@ -18,11 +18,10 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from .agent import answer
 from .briefs import run_brief
 from .config import Settings
-from .slackfmt import to_slack
+from .slackfmt import ERROR_FOOTER, FOOTER_RE, footer, to_slack
 from .vault import Vault
 
 log = logging.getLogger("msai-bot")
-FOOTER_RE = re.compile(r"\n\n_claude-[\w.-]+ · \$[\d.]+_\s*$")
 MAX_HISTORY = 12
 
 
@@ -81,16 +80,20 @@ def create_app(settings: Settings) -> tuple[App, anthropic.Anthropic, Vault]:
         try:
             history = thread_history(client, channel, thread_ts, ts, settings.owner_user_id, bot_user) if event.get("thread_ts") else []
             result = answer(claude, vault, history, text)
-            reply = f"{to_slack(result.text)}\n\n_{result.tier.model} · ${result.cost:.3f}_"
-            log.info("answered ts=%s tier=%s reason=%s cost=%.4f", ts, result.tier.name, result.reason, result.cost)
+            reply = to_slack(result.text) + footer(result)
+            log.info(
+                "answered ts=%s tier=%s model=%s reason=%s total=%.4f answer=%.4f router=%.4f in=%d cached=%d out=%d",
+                ts, result.tier.name, result.served_by, result.reason, result.total_cost, result.cost,
+                result.router_cost, result.input_tokens, result.cached_tokens, result.output_tokens,
+            )
         except anthropic.RateLimitError:
-            reply = "Claude is rate-limited right now; try again in a minute."
+            reply = "Claude is rate-limited right now; try again in a minute." + ERROR_FOOTER
         except anthropic.APIError as exc:
             log.exception("Claude API error")
-            reply = f"Claude API error ({type(exc).__name__}); try again shortly."
+            reply = f"Claude API error ({type(exc).__name__}); try again shortly." + ERROR_FOOTER
         except Exception as exc:  # noqa: BLE001 — never leave Jock without a reply
             log.exception("handler failed")
-            reply = f"Something broke on my side ({type(exc).__name__}). Logged for review."
+            reply = f"Something broke on my side ({type(exc).__name__}). Logged for review." + ERROR_FOOTER
         client.chat_postMessage(channel=channel, thread_ts=thread_ts, text=reply, unfurl_links=False)
 
     @app.event("message")
