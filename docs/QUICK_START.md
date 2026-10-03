@@ -27,7 +27,7 @@ pip install -r scripts\requirements.txt
 | 3 | `python scripts\convert_content.py --week N --dry-run`, then without `--dry-run` |
 | 4 | No Granola? Turn the Zoom VTT into notes (lecture-notes skill) |
 | 5 | **Librarian**: ingest / session merge |
-| 6 | **Tutor** (`study` skill) / **Homework Coach** / **US Signal Advisor** as needed |
+| 6 | **Tutor** (`ms-ai-paper-tutor` skill) / **Homework Coach** / **US Signal Advisor** as needed |
 | — | Ops glance: `python scripts\dashboard.py --open` |
 | — | Wiki graph: `python scripts\stage_wiki_graph.py` (or say **turn my wiki into a graph**) |
 

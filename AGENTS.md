@@ -25,7 +25,7 @@ If the user names a role, follow the matching rule in `.cursor/rules/` and this 
 | Role | Focus |
 |------|--------|
 | **Librarian** | Ingest, index, log, lint, session merge |
-| **Tutor** | Explain, quiz, cite wiki pages; uses the `study` skill |
+| **Tutor** | Explain, quiz, cite wiki pages; papers via the `ms-ai-paper-tutor` skill |
 | **Homework Coach** | Rubric drafts, gaps; never invent syllabus requirements |
 | **US Signal Advisor** | Work applications + monthly briefs; no proprietary course dumps to company docs |
 
@@ -33,7 +33,7 @@ Default (Ops): use `command-center/HOME.md` for priorities. Working contract for
 
 ## Source priority (sessions)
 
-1. **Syllabus**: authoritative for dates, outcomes, rubrics
+1. **Syllabus + Brightspace**: the syllabus is the *plan* for dates, outcomes, rubrics. AI 5100 is new and changes on the fly, so what is actually posted in Brightspace (assignments, announcements, lesson pages) overrides the syllabus. When they conflict, follow Brightspace and note the conflict.
 2. **Granola**: primary for live Tuesday sessions (`Coursework/AI 5100 Week N/sessions/`)
 3. **Brightspace async**: Thursday materials
 4. **Zoom**: transcript (`.vtt`) or link note only; fill gaps; never store video in git
@@ -50,7 +50,7 @@ Per week: one lecture page under `wiki/courses/AI-5100/lectures/Week-NN.md` reco
 
 ### Query / Tutor
 
-Read `wiki/index.md` first, follow wikilinks, answer with citations. The `study` skill (`.claude/skills/study/`) runs explain/quiz/compare/teachback/review and tracks spaced review in `command-center/study-progress.md`. File strong answers under `wiki/syntheses/`.
+Read `wiki/index.md` first, follow wikilinks, answer with citations. For a course paper, use the `ms-ai-paper-tutor` skill (`.claude/skills/ms-ai-paper-tutor/`). File strong answers under `wiki/syntheses/`.
 
 ### Homework
 

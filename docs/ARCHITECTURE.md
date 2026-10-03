@@ -21,7 +21,7 @@ Coursework (+ sessions/Granola, VTT)
     → lecture-notes skill (VTT)         → wiki/courses/AI-5100/lecture-notes/
     → Librarian ingest / session merge
     → wiki/ (index.md + log.md)
-         ├→ Tutor (study skill) → command-center/study-progress.md
+         ├→ Tutor (ms-ai-paper-tutor skill)
          ├→ Homework Coach
          ├→ wiki-to-graph (`stage_wiki_graph.py`) → typed viewer
          └→ US Signal Advisor → monthly brief
@@ -47,7 +47,7 @@ ms_ai/
   .claude/                  # settings.json, identity/operating.md, claude-md-guide.md, skills/
   .cursor/rules/            # ms-ai-core + personas (point at .claude/)
   docs/                     # QUICK_START, CURRENT_STATE, DECISIONS, ARCHITECTURE
-  command-center/           # HOME, homework-queue, calendar, grades, study-progress
+  command-center/           # HOME, homework-queue, calendar, grades
   us-signal/                # BRIEF_TEMPLATE, applications-log, monthly/
   scripts/                  # convert_content.py, vault_paths.py, dashboard.py, stage_wiki_graph.py
   voices/                   # house + professor packs

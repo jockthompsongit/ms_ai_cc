@@ -5,7 +5,7 @@ Invoke by name in Claude Code or Cursor chat (e.g. “Librarian: ingest this Gra
 | Persona | Rule file | Use when |
 |---------|-----------|----------|
 | **Librarian** | `.cursor/rules/librarian.mdc` | New source, session merge, lint, index/log |
-| **Tutor** | `.cursor/rules/tutor.mdc` → `.claude/skills/study/` | Learn concepts, quiz, spaced review, exam prep |
+| **Tutor** | `.cursor/rules/tutor.mdc` → `.claude/skills/ms-ai-paper-tutor/` | Learn concepts and papers, quiz, exam prep |
 | **Homework Coach** | `.cursor/rules/homework.mdc` | Assignments, rubrics, drafts |
 | **US Signal Advisor** | `.cursor/rules/us-signal.mdc` | Work applications, monthly brief |
 

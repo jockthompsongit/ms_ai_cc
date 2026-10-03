@@ -8,7 +8,7 @@ Lean pointer for AI agents. Load docs by task size — do not read everything ev
 | Medium | [QUICK_START](docs/QUICK_START.md), [CURRENT_STATE](docs/CURRENT_STATE.md) | [DECISIONS](docs/DECISIONS.md) |
 | Large / architecture | QUICK_START, CURRENT_STATE, DECISIONS | [ARCHITECTURE](docs/ARCHITECTURE.md) |
 | Wiki ingest / homework | [AGENTS.md](AGENTS.md) + vault `wiki/index.md` | Persona rule in `.cursor/rules/` |
-| Study / tutor | `.claude/skills/study/SKILL.md` | `command-center/study-progress.md` |
+| Tutor / paper walkthrough | `.claude/skills/ms-ai-paper-tutor/SKILL.md` | `.cursor/rules/tutor.mdc` |
 | Lecture recording → notes | `.claude/skills/lecture-recording-to-lecture-notes/SKILL.md` | Week folder under `Coursework/` |
 | Wiki → knowledge graph | `.claude/skills/wiki-to-graph/SKILL.md` | `wiki-graph-view` / `wiki-graph-maintain`; `scripts/stage_wiki_graph.py` |
 | Editing CLAUDE.md | `.claude/claude-md-guide.md` | — |

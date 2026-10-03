@@ -27,7 +27,7 @@
 - [grade-tracker.md](grade-tracker.md)
 - [../us-signal/applications-log.md](../us-signal/applications-log.md)
 - Vault: `C:\Users\jockt\Dropbox\Vandy_MS_AI` · Wiki index: `Vandy Other\wiki\index.md`
-- Study: say "quiz me" / "review" (`study` skill) · progress in [study-progress.md](study-progress.md)
+- Study: "Tutor: walk me through <paper>" (`ms-ai-paper-tutor` skill)
 
 ## Capture checklist (every class)
 

@@ -41,5 +41,4 @@ Never:
 ## Domain notes
 
 - Ops priorities: `command-center/HOME.md`. Calendar and assessments: `command-center/academic-calendar.md` (copied from the syllabus page in the vault).
-- Study progress (spaced review): `command-center/study-progress.md`, owned by the `study` skill.
 - Read PDFs over ~20 pages in page ranges, not all at once.

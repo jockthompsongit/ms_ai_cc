@@ -32,7 +32,7 @@ Scaffolding complete 2026-09-12. On 2026-10-03 the repo was updated for the vaul
 
 ## Personas and skills
 
-Say **Librarian**, **Tutor**, **Homework Coach**, or **US Signal Advisor**. Skills live in `.claude/skills/`: `study`, `lecture-recording-to-lecture-notes`, the wiki-to-graph family, and `ms-ai-paper-tutor`. Cursor's always-on context (`.cursor/rules/ms-ai-core.mdc`) points at them.
+Say **Librarian**, **Tutor**, **Homework Coach**, or **US Signal Advisor**. Skills live in `.claude/skills/`: `ms-ai-paper-tutor` (Tutor), `lecture-recording-to-lecture-notes`, and the wiki-to-graph family. Cursor's always-on context (`.cursor/rules/ms-ai-core.mdc`) points at them.
 
 ## Weekly loop
 
@@ -40,7 +40,7 @@ Say **Librarian**, **Tutor**, **Homework Coach**, or **US Signal Advisor**. Skil
 2. Granola → `Coursework/.../sessions/granola-YYYYMMDD.md`
 3. `python scripts/convert_content.py --week N`
 4. **Librarian** ingest → wiki lecture page + `index.md` / `log.md`
-5. **Tutor** (`study`) / **Homework Coach** / **US Signal Advisor** as needed
+5. **Tutor** (`ms-ai-paper-tutor`) / **Homework Coach** / **US Signal Advisor** as needed
 
 ## Vault layout
 

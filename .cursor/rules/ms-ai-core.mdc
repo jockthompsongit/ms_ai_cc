@@ -10,10 +10,9 @@ alwaysApply: true
 - Ops dashboard: [command-center/HOME.md](../../command-center/HOME.md)
 - Personas (invoke by name): Librarian, Tutor, Homework Coach, US Signal Advisor. See `.cursor/rules/`
 - Skills live only in `.claude/skills/<name>/SKILL.md`; read the file when the task matches:
-  - `study`: explain, quiz, compare, teachback, spaced review (Tutor)
   - `lecture-recording-to-lecture-notes`: Zoom VTT (+ slides/mp4) → lecture notes
   - `wiki-to-graph`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`: typed graph (Librarian still owns ingest)
-  - `ms-ai-paper-tutor`: work through a research paper
+  - `ms-ai-paper-tutor`: Tutor engine; teach a course paper intuition-first, grounded in the wiki
 - Prefer wiki `index.md` before answering course questions
 - When Jock corrects recurring behavior, write the fix into `operating.md` or the skill's `## Jock's Preferences`, and say which line changed
 - Do not commit vault binaries or push unless the user asks

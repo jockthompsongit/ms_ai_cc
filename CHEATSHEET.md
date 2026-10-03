@@ -15,7 +15,6 @@
 | Wiki index / log | `wiki\index.md`, `wiki\log.md` |
 | Lectures | `wiki\courses\AI-5100\lectures\Week-NN.md` |
 | Lecture notes (from VTT) | `wiki\courses\AI-5100\lecture-notes\week-NN\` |
-| Study progress | `command-center\study-progress.md` |
 | Paths module | `scripts\vault_paths.py` |
 
 ## Convert
@@ -58,16 +57,16 @@ Output: `C:\Users\jockt\dev\wiki-to-graph\build\vandy-ms-ai\` (vault wiki untouc
 
 Skill: `.claude/skills/lecture-recording-to-lecture-notes/` (upstream original kept as `SKILL.upstream.md`). Ask to turn a Zoom VTT into notes. Reads `Coursework\AI 5100 Week N\`; writes `wiki\courses\AI-5100\lecture-notes\week-NN\<date>-<slug>\`. Then **Librarian** session merge into `Week-NN.md`. Do not commit `.mp4`.
 
-## Study
+## Paper tutor
 
-Skill: `.claude/skills/study/`. Say "quiz me on attention", "explain RLHF", "compare BERT and GPT-3", "teachback ReAct", "review", or "exam prep". Progress and spaced review: `command-center/study-progress.md`.
+Skill: `.claude/skills/ms-ai-paper-tutor/`. Say "Tutor: walk me through the ReAct paper" or "teach me Lost in the Middle". Teaches intuition → example → problem → breakthrough → mechanics → evidence → implications, citing the paper and wiki pages.
 
 ## Personas
 
 | Say | Does |
 |-----|------|
 | Librarian | Ingest, session merge, index/log, lint |
-| Tutor | Runs the `study` skill |
+| Tutor | Explain / quiz from wiki; papers via `ms-ai-paper-tutor` |
 | Homework Coach | Rubric drafts, gap analysis |
 | US Signal Advisor | Work apps + monthly brief |
 
@@ -87,5 +86,5 @@ git push                    # only when asked
 1. Dump Brightspace/async into `Coursework\AI 5100 Week N\`
 2. Export Granola → `Coursework\...\sessions\granola-YYYYMMDD.md`
 3. Convert → **Librarian** ingest (VTT → lecture-notes skill first if no Granola)
-4. Study with **Tutor** (`study`); assignments with **Homework Coach**
+4. Study with **Tutor** (`ms-ai-paper-tutor` for papers); assignments with **Homework Coach**
 5. Log US Signal applications; monthly brief end of month

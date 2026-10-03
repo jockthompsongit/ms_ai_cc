@@ -15,7 +15,9 @@ Source of truth: vault syllabus (`Vandy Other/wiki/courses/AI-5100/syllabus/AI 5
 
 Module window: Aug 26 – Oct 16, 2026.
 
-## Assessments (from syllabus)
+## Assessments (planned, from syllabus)
+
+The course changes on the fly; only Brightspace postings are real. As of 2026-10-03 one homework has been assigned (see `homework-queue.md`).
 
 - Homework 1 — Fri Sep 4
 - Quiz 1 — Fri Sep 11

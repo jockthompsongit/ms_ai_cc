@@ -11,15 +11,14 @@ Updated: 2026-10-03
 - **Graph staging** includes `courses/` (lectures, assignments, syllabus, project) and excludes `raw/` and `lecture-notes/`. 26 pages staged on 2026-10-03.
 - **Calendar:** Weeks 1–8 dated, plus the assessment list, from the vault syllabus page.
 - **Claude Code layer** (adopted from `personal_assistant`): `CLAUDE.md`, `.claude/identity/operating.md` (working contract), `.claude/claude-md-guide.md`, and `.claude/settings.json` deny rules (Coursework, wiki/raw, _archive; no reads of Admin).
-- **Skills (single copy in `.claude/skills/`):** `study` (new; Tutor engine with spaced review), `lecture-recording-to-lecture-notes` (PA version with Jock's Preferences + quiz + wiki linking), the wiki-to-graph family (with `UPSTREAM.md`, `docs/`, `LICENSE.md`), and `ms-ai-paper-tutor`. `.cursor/skills/` and `.agents/` were removed.
+- **Skills (single copy in `.claude/skills/`):** `ms-ai-paper-tutor` (Tutor engine, now with a vault overlay and Jock's Preferences), `lecture-recording-to-lecture-notes` (PA version with Jock's Preferences + quiz + wiki linking), and the wiki-to-graph family (with `UPSTREAM.md`, `docs/`, `LICENSE.md`). PA's `study` skill was tried and removed at Jock's request. `.cursor/skills/` and `.agents/` were removed.
 
 ## Gaps
 
 - **Weeks 3–6 not converted or ingested** (all in `Coursework/`). Weeks 3–4 have Zoom VTTs. Module ends Oct 16.
-- **Homework queue is stale:** HW-W2 is still `in_progress`. The syllabus lists HW1 Sep 4, HW2 Sep 25, HW3 Oct 2, HW4 Oct 9 and a midterm Sep 14–18; confirm which assignment HW-W2 is and what's been submitted.
+- **Homework:** only one assignment has actually been posted (HW-W2); its status still needs confirming. The syllabus's HW1–4 and assessment dates are plans; Brightspace overrides them (course changes on the fly).
 - `Coursework/_inbox/` has an unsorted homework `.docx`.
 - Granola still not landing in `sessions/`.
-- `study` graded-work default is marked *proposed*, not yet confirmed by Jock.
 - First US Signal monthly brief not written; grade tracker empty.
 
 ## Known issues
@@ -29,4 +28,4 @@ Updated: 2026-10-03
 
 ## Current focus
 
-Convert + ingest Weeks 3–6, reconcile the homework queue against the syllabus, then use `study` for Quiz 3 (Oct 7) prep.
+Convert + ingest Weeks 3–6, reconcile the homework queue against the syllabus, then paper-tutor walkthroughs for the Week 5–7 readings.

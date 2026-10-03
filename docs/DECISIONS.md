@@ -76,7 +76,7 @@
 - **Guardrails as permissions, not prose:** `.claude/settings.json` denies Edit/Write on `Coursework/`, `wiki/raw/` and `_archive/`, and Read on `Admin/`.
 - **One skill copy, in `.claude/skills/`.** Removed `.cursor/skills/` and `.agents/`. Cursor rules point at the skill files.
 - Vendored skills carry provenance: `UPSTREAM.md` (pinned commit, license, local changes) and `SKILL.upstream.md`, plus a `## Jock's Preferences` section where corrections accumulate.
-- New `study` skill replaces the Tutor rule's mechanics; spaced review lives in `command-center/study-progress.md`.
+- ~~New `study` skill~~ (removed same day at Jock's request): `ms-ai-paper-tutor` is the Tutor engine instead, given a vault overlay and a `## Jock's Preferences` section.
 - **Wiki format unchanged:** nested `concepts/`, `courses/` and wiki-author typed sections. PA's flat `notes/` + four-section format was not adopted.
 - Lecture-notes output moves from `raw/` to `wiki/courses/AI-5100/lecture-notes/week-NN/`, because derived notes aren't raw and `raw/` is now edit-denied. Graph staging skips `lecture-notes/`.
 
