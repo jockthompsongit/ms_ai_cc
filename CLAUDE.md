@@ -42,3 +42,5 @@ Never:
 
 - Ops priorities: `command-center/HOME.md`. Calendar and assessments: `command-center/academic-calendar.md` (copied from the syllabus page in the vault).
 - Read PDFs over ~20 pages in page ranges, not all at once.
+- Slack `#ms-ai` is an agent channel: read `command-center/slack.md` before posting. Every assistant message starts with 🤖; never post anywhere else.
+- Brightspace structure, recordings and readings: `command-center/course-map.md`, `command-center/readings.json`. Never store Zoom share links in the repo.

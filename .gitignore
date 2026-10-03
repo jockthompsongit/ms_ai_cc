@@ -44,3 +44,6 @@ build/
 # Skills live only in .claude/skills/ (no Codex/Cursor mirrors)
 .agents/
 .claude/settings.local.json
+
+# Slack inbox runtime state
+command-center/.slack-state.json

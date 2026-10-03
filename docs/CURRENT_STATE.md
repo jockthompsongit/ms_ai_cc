@@ -13,6 +13,13 @@ Updated: 2026-10-03
 - **Claude Code layer** (adopted from `personal_assistant`): `CLAUDE.md`, `.claude/identity/operating.md` (working contract), `.claude/claude-md-guide.md`, and `.claude/settings.json` deny rules (Coursework, wiki/raw, _archive; no reads of Admin).
 - **Skills (single copy in `.claude/skills/`):** `ms-ai-paper-tutor` (Tutor engine, now with a vault overlay and Jock's Preferences), `lecture-recording-to-lecture-notes` (PA version with Jock's Preferences + quiz + wiki linking), and the wiki-to-graph family (with `UPSTREAM.md`, `docs/`, `LICENSE.md`). PA's `study` skill was tried and removed at Jock's request. `.cursor/skills/` and `.agents/` were removed.
 
+- **Brightspace map** (`command-center/course-map.md`, `readings.json`), read via Claude in Chrome 2026-10-03.
+- **Readings:** 13 public links captured to `raw/.../links/` (`capture_links.py`); 5 manual (tools, repos, Box).
+- **Pending work:** `scripts/pending_work.py` (transcripts, notes, conversion, lecture pages, reading summaries, homework).
+- **Transcripts:** `scripts/file_transcripts.py` files Zoom VTT downloads by week + live/async. Automatic in-browser capture was blocked by the safety classifier; downloads stay manual.
+- **Tutor packs:** `scripts/build_tutor_pack.py --all` → Dropbox `Vandy Other/tutor-packs/` for Claude/ChatGPT Projects.
+- **Slack #ms-ai** (`command-center/slack.md`): scheduled tasks `ms-ai-daily-brief` (weekdays ~7:40), `ms-ai-week-ahead` (Sun ~6:15 PM), `ms-ai-slack-inbox` (every 30 min, 7 AM–10 PM). Desktop app must be open.
+
 ## Gaps
 
 - **Weeks 3–6 not converted or ingested** (all in `Coursework/`). Weeks 3–4 have Zoom VTTs. Module ends Oct 16.
