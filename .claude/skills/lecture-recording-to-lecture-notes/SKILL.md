@@ -49,6 +49,8 @@ Paths for the Command Center (`C:\Users\jockt\dev\ms_ai`). These override the ge
 - Never modify or move files in `Coursework/`. Never write into `wiki/raw/` (settings deny it).
 - Never copy `.mp4` into git.
 - Zoom VTT is a **gap-fill** source. Granola notes in `Coursework/AI 5100 Week N/sessions/` are primary for live Tuesday sessions; read them as supplementary material when present.
+- **Transcript naming.** `python scripts\file_transcripts.py` files Zoom downloads as `Coursework/AI 5100 Week N/transcripts/<YYYY-MM-DD>-<live|async>.transcript.vtt`. Use the date and live/async in the notes folder slug and title. Older VTTs may still sit in the week folder root under their Zoom names.
+- **Unattended mode.** When the run was started by a scheduled task or by "process pending transcripts" (the list comes from `python scripts\pending_work.py`), skip the Phase 0 confirmation: record the inventory in the notes' frontmatter, skip video screenshots unless an `.mp4` is already local, never install packages, and process each pending transcript in turn. Always record `source_transcript:` with the exact `.vtt` filename; `pending_work.py` uses it to know which transcripts are done.
 - After notes are written, stop. The weekly lecture page `wiki/courses/AI-5100/lectures/Week-NN.md` belongs to **Librarian** session merge; offer the hand-off.
 
 ## Workflow

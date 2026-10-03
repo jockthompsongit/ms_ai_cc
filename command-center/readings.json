@@ -1,0 +1,23 @@
+{
+  "_about": "Web readings and resource links posted in Brightspace (AI 5100, org unit 670098), read 2026-10-03. PDFs are tracked as files in Coursework/, not here. capture=false means the page needs a Vanderbilt login or is a repo/tool, so capture_links.py skips it.",
+  "readings": [
+    {"week": 1, "title": "The Surprising Power of Next Word Prediction: Large Language Models Explained, Part 1 (CSET)", "url": "https://cset.georgetown.edu/article/the-surprising-power-of-next-word-prediction-large-language-models-explained-part-1/", "kind": "article", "capture": true},
+    {"week": 2, "title": "Transformer Explainer (Polo Club)", "url": "https://poloclub.github.io/transformer-explainer/", "kind": "tool", "capture": false},
+    {"week": 2, "title": "LLM Wiki tutorial (Data Science Dojo)", "url": "https://datasciencedojo.com/blog/llm-wiki-tutorial/", "kind": "article", "capture": true},
+    {"week": 2, "title": "Choosing the right model (Anthropic documentation)", "url": "https://platform.claude.com/docs/en/docs/about-claude/models/choosing-a-model", "kind": "docs", "capture": true},
+    {"week": 2, "title": "Artificial Analysis: AI Model Comparison", "url": "https://artificialanalysis.ai/models", "kind": "tool", "capture": false},
+    {"week": 3, "title": "Anthropic: Prompt engineering best practices", "url": "https://claude.com/blog/best-practices-for-prompt-engineering", "kind": "article", "capture": true},
+    {"week": 3, "title": "Agent Skills: the open standard", "url": "https://github.com/agentskills/agentskills", "kind": "repo", "capture": true},
+    {"week": 3, "title": "Vaughan (2026): The Agent Skills Open Standard: Portable SKILL.md Files", "url": "https://codex.danielvaughan.com/2026/05/05/agent-skills-open-standard-portable-skills-codex-cli-cross-agent/", "kind": "article", "capture": true},
+    {"week": 4, "title": "Lecture notes skill (skill-repo)", "url": "https://github.com/jessespencersmith/skill-repo", "kind": "repo", "capture": false},
+    {"week": 4, "title": "Anthropic: Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents", "kind": "article", "capture": true},
+    {"week": 4, "title": "Model Context Protocol: official introduction", "url": "https://modelcontextprotocol.io/docs/getting-started/intro", "kind": "docs", "capture": true},
+    {"week": 4, "title": "MCP vs API: Model Context Protocol explained (Norah Sakal)", "url": "https://norahsakal.com/blog/mcp-vs-api-model-context-protocol-explained/", "kind": "article", "capture": true},
+    {"week": 5, "title": "Personal assistant template project", "url": "https://github.com/vanderbilt-ms-ai/assistant-template", "kind": "repo", "capture": false},
+    {"week": 5, "title": "Anthropic: Effective context engineering for AI agents", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", "kind": "article", "capture": true},
+    {"week": 5, "title": "Sourcegraph: Context Engineering, a practical guide for AI agents", "url": "https://sourcegraph.com/blog/context-engineering", "kind": "article", "capture": true},
+    {"week": 5, "title": "Claude Code: Commands", "url": "https://code.claude.com/docs/en/commands", "kind": "docs", "capture": true},
+    {"week": 5, "title": "DataHub: Context management", "url": "https://datahub.com/blog/context-management/", "kind": "article", "capture": true},
+    {"week": 5, "title": "A typical Claude session (Vanderbilt Box)", "url": "(Vanderbilt Box share link: open from the Week 5 module in Brightspace)", "kind": "file", "capture": false}
+  ]
+}
