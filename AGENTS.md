@@ -6,14 +6,17 @@ You maintain a Karpathy-style LLM wiki for the Vanderbilt MS in Artificial Intel
 
 | Name | Path |
 |------|------|
-| Vault | `C:\Users\jockt\Dropbox\Vandy_MS_AI` |
-| Content dump | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Content` |
-| Raw (immutable) | `C:\Users\jockt\Dropbox\Vandy_MS_AI\raw` |
-| Wiki | `C:\Users\jockt\Dropbox\Vandy_MS_AI\wiki` |
+| Vault (Dropbox) | `C:\Users\jockt\Dropbox\Vandy_MS_AI` |
+| Coursework dump (immutable) | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Coursework\AI 5100 Week N\` |
+| Coursework inbox | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Coursework\_inbox\` |
+| Wiki (Obsidian vault root) | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Vandy Other\wiki` |
+| Raw (immutable, converted) | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Vandy Other\wiki\raw` |
+| Archive | `C:\Users\jockt\Dropbox\Vandy_MS_AI\Vandy Other\_archive` |
 | Command Center | `C:\Users\jockt\dev\ms_ai` |
-| Archive | `C:\Users\jockt\Dropbox\Vandy_MS_AI\_archive` |
 
-Write new knowledge only under `wiki/`. Never modify `Content/` or mutate converted `raw/` files. Leave `_archive/` alone.
+Scripts read these from `scripts/vault_paths.py`; change paths there first.
+
+Below, `wiki/` means the wiki root above and `raw/` means `wiki/raw/`. Write new knowledge only under `wiki/` (never inside `wiki/raw/`). Never modify `Coursework/` or existing `raw/` files. Leave `_archive/` and the vault's `Admin/` and `personal_assistant/` folders alone.
 
 ## Persona dispatch
 
@@ -22,18 +25,18 @@ If the user names a role, follow the matching rule in `.cursor/rules/` and this 
 | Role | Focus |
 |------|--------|
 | **Librarian** | Ingest, index, log, lint, session merge |
-| **Tutor** | Explain, quiz, cite wiki pages |
+| **Tutor** | Explain, quiz, cite wiki pages; uses the `study` skill |
 | **Homework Coach** | Rubric drafts, gaps; never invent syllabus requirements |
 | **US Signal Advisor** | Work applications + monthly briefs; no proprietary course dumps to company docs |
 
-Default (Ops): use `command-center/HOME.md` for priorities.
+Default (Ops): use `command-center/HOME.md` for priorities. Working contract for every role: `.claude/identity/operating.md`.
 
 ## Source priority (sessions)
 
-1. **Syllabus** — authoritative for dates, outcomes, rubrics
-2. **Granola** — primary for live Tuesday sessions (`Content/.../sessions/`)
-3. **Brightspace async** — Thursday materials
-4. **Zoom** — transcript or link note only; fill gaps; never store video in git
+1. **Syllabus**: authoritative for dates, outcomes, rubrics
+2. **Granola**: primary for live Tuesday sessions (`Coursework/AI 5100 Week N/sessions/`)
+3. **Brightspace async**: Thursday materials
+4. **Zoom**: transcript (`.vtt`) or link note only; fill gaps; never store video in git
 
 ## Operations
 
@@ -43,11 +46,11 @@ One source at a time. Read source → discuss takeaways if useful → write/upda
 
 ### Session merge
 
-Per week: one lecture page under `wiki/courses/AI-5100/lectures/` reconciling Granola + async + slides. Note conflicts explicitly. Keep US Signal Application section.
+Per week: one lecture page under `wiki/courses/AI-5100/lectures/Week-NN.md` reconciling Granola + async + slides (+ `raw/.../lecture-notes/` from the lecture-notes skill if present). Note conflicts explicitly. Keep US Signal Application section.
 
 ### Query / Tutor
 
-Read `wiki/index.md` first, follow wikilinks, answer with citations. File strong answers under `wiki/syntheses/`.
+Read `wiki/index.md` first, follow wikilinks, answer with citations. The `study` skill (`.claude/skills/study/`) runs explain/quiz/compare/teachback/review and tracks spaced review in `command-center/study-progress.md`. File strong answers under `wiki/syntheses/`.
 
 ### Homework
 
@@ -59,17 +62,22 @@ Periodic health check: orphans, stale claims, missing concepts from course map, 
 
 ### Graph (wiki-to-graph)
 
-Project skills: `.cursor/skills/wiki-to-graph/`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author`. Sibling clone: `C:\Users\jockt\dev\wiki-to-graph`. Nested vault pages must be flattened first: `python scripts/stage_wiki_graph.py`. Output: `wiki-to-graph/build/vandy-ms-ai/`. Markdown wiki stays source of truth; never edit `graph.json`. **Librarian** still owns ingest — `wiki-author` does not replace it.
+Project skills in `.claude/skills/`: `wiki-to-graph`, `wiki-graph-view`, `wiki-graph-maintain`, `wiki-author` (provenance in `wiki-to-graph/UPSTREAM.md`). Sibling clone: `C:\Users\jockt\dev\wiki-to-graph`. Nested vault pages must be flattened first: `python scripts/stage_wiki_graph.py` (stages `concepts/`, `sources/`, `syntheses/`, `courses/`; never `raw/`). Output: `wiki-to-graph/build/vandy-ms-ai/`. Markdown wiki stays source of truth; never edit `graph.json`. **Librarian** still owns ingest; `wiki-author` does not replace it.
 
 ### US Signal
 
 Fill application notes on concepts/lectures. Monthly: `us-signal/monthly/YYYY-MM.md` from `BRIEF_TEMPLATE.md`. Never paste Vanderbilt proprietary materials into company-facing briefs.
+
+### Corrections
+
+When Jock corrects behavior that will come up again, write the fix where it will be loaded next time: `.claude/identity/operating.md` for working rules, or the `## Jock's Preferences` section of the relevant skill for skill output. Say which file and line changed.
 
 ## Wiki conventions
 
 - Markdown + `[[wikilinks]]` + YAML frontmatter (`type`, `course`, `tags`)
 - Special files: `wiki/index.md` (catalog), `wiki/log.md` (append-only)
 - Concepts under `wiki/concepts/`; courses under `wiki/courses/`; syntheses under `wiki/syntheses/`
+- Paper filenames: `YYYY-MM-<first-author-surname>-<short-kebab-title>` (publication or arXiv month)
 
 ## Out of scope (v1)
 

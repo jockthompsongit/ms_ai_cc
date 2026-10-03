@@ -40,3 +40,7 @@ _archive/
 
 # Local graph build artifacts (wiki-to-graph staging lives under sibling clone)
 build/
+
+# Skills live only in .claude/skills/ (no Codex/Cursor mirrors)
+.agents/
+.claude/settings.local.json
