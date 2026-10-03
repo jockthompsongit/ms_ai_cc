@@ -14,9 +14,17 @@ from datetime import date, datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
-from vault_paths import COMMAND_CENTER, CONTENT_DIR, RAW_DIR, REPO_ROOT, VAULT_ROOT, WIKI_DIR
+from vault_paths import (
+    COMMAND_CENTER,
+    COURSEWORK_DIR,
+    INBOX_DIR,
+    RAW_DIR,
+    REPO_ROOT,
+    VAULT_ROOT,
+    WIKI_DIR,
+)
 
 GITHUB_URL = "https://github.com/jockthompsongit/ms_ai_cc"
 COURSE_PREFIX = "AI 5100"
@@ -227,10 +235,10 @@ def parse_calendar(md: str, today: date) -> list[CalendarRow]:
 
 
 def discover_content_weeks() -> list[int]:
-    if not CONTENT_DIR.exists():
+    if not COURSEWORK_DIR.exists():
         return []
     found: list[int] = []
-    for path in CONTENT_DIR.glob(f"{COURSE_PREFIX} Week *"):
+    for path in COURSEWORK_DIR.glob(f"{COURSE_PREFIX} Week *"):
         m = re.search(r"Week\s+(\d+)$", path.name)
         if m:
             found.append(int(m.group(1)))
@@ -238,7 +246,7 @@ def discover_content_weeks() -> list[int]:
 
 
 def probe_capture(week: int) -> CaptureStatus:
-    content = CONTENT_DIR / f"{COURSE_PREFIX} Week {week}"
+    content = COURSEWORK_DIR / f"{COURSE_PREFIX} Week {week}"
     sessions_dir = content / "sessions"
     sessions_ok = False
     if sessions_dir.is_dir():
@@ -275,6 +283,22 @@ def scrub_md_links(text: str) -> str:
         .replace("\u201c", '"')
         .replace("\u201d", '"')
     )
+
+
+def link_href(target: Path | str) -> str | None:
+    """Clickable href for a link target, or None if the browser cannot open it.
+
+    Browsers block file:/// links from an http page, so vault files open in
+    Obsidian and repo files open in Cursor. Folders get no link (path shown only).
+    """
+    if isinstance(target, str):
+        return target
+    if target.is_dir():
+        return None
+    posix = target.as_posix()
+    if target.is_relative_to(VAULT_ROOT):
+        return "obsidian://open?path=" + quote(posix, safe="")
+    return "cursor://file/" + quote(posix, safe="/:")
 
 
 def esc(s: str) -> str:
@@ -371,19 +395,34 @@ def render_html(
         + "</tbody></table>"
     )
 
-    wiki_index = WIKI_DIR / "index.md"
+    inbox_items = (
+        sorted(p.name for p in INBOX_DIR.iterdir() if p.name.lower() != "readme.md")
+        if INBOX_DIR.is_dir()
+        else []
+    )
+    if inbox_items:
+        inbox_html = "<ul class='links'>" + "".join(
+            f"<li>{esc(name)}</li>" for name in inbox_items
+        ) + "</ul>"
+    else:
+        inbox_html = "<p class='muted'>Inbox empty.</p>"
+
     links = [
-        ("HOME.md", str(COMMAND_CENTER / "HOME.md")),
-        ("personas.md", str(COMMAND_CENTER / "personas.md")),
-        ("homework-queue.md", str(COMMAND_CENTER / "homework-queue.md")),
-        ("Wiki index", str(wiki_index)),
-        ("Vault root", str(VAULT_ROOT)),
+        ("HOME.md", COMMAND_CENTER / "HOME.md"),
+        ("personas.md", COMMAND_CENTER / "personas.md"),
+        ("homework-queue.md", COMMAND_CENTER / "homework-queue.md"),
+        ("Wiki index", WIKI_DIR / "index.md"),
+        ("Vault root", VAULT_ROOT),
         ("GitHub ms_ai_cc", GITHUB_URL),
     ]
     links_html = "".join(
-        f'<li><a href="{esc(href) if href.startswith("http") else "file:///" + esc(href.replace(chr(92), "/"))}">{esc(label)}</a>'
-        f'<span class="path">{esc(href)}</span></li>'
-        for label, href in links
+        (
+            f'<li><a href="{esc(href)}">{esc(label)}</a>'
+            if (href := link_href(target))
+            else f"<li>{esc(label)}"
+        )
+        + f'<span class="path">{esc(str(target))}</span></li>'
+        for label, target in links
     )
 
     generated = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -591,7 +630,9 @@ def render_html(
       <div>
         <h2>Capture checklist</h2>
         {capture_html}
-        <p class="muted" style="margin-top:0.75rem;font-size:0.85rem">Sessions = any file under Content/…/sessions/. Raw = converted week folder. Lecture = wiki lectures/Week-NN.md.</p>
+        <p class="muted" style="margin-top:0.75rem;font-size:0.85rem">Content = Coursework week folder. Sessions = any file under Coursework/…/sessions/. Raw = converted week folder. Lecture = wiki lectures/Week-NN.md.</p>
+        <h2 style="margin-top:1.75rem">Coursework inbox <span class="count">{len(inbox_items)} item(s)</span></h2>
+        {inbox_html}
       </div>
       <div>
         <h2>Quick links</h2>

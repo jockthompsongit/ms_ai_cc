@@ -15,8 +15,11 @@ from pathlib import Path
 
 from vault_paths import WIKI_DIR, WIKI_GRAPH_OUT, WIKI_TO_GRAPH_ROOT
 
-# Nested folders whose *.md pages become top-level nodes in the staged wiki
-STAGE_SUBDIRS = ("concepts", "sources", "syntheses")
+# Nested folders (searched recursively) whose *.md pages become top-level nodes.
+# raw/ is deliberately excluded: it holds converted sources, not wiki pages.
+STAGE_SUBDIRS = ("concepts", "sources", "syntheses", "courses")
+# Long-form derived notes (lecture-recording skill output) are not graph nodes
+SKIP_PARTS = {"lecture-notes"}
 
 
 def scripts_dir() -> Path:
@@ -41,14 +44,17 @@ def stage_flat_wiki(wiki: Path, stage: Path) -> list[str]:
         folder = wiki / sub
         if not folder.is_dir():
             continue
-        for src in sorted(folder.glob("*.md")):
+        for src in sorted(folder.rglob("*.md")):
+            if SKIP_PARTS.intersection(src.relative_to(wiki).parts):
+                continue
+            # Obsidian resolves [[links]] by filename, so flattening keeps links intact
             dest_name = src.name
-            if dest_name.lower() in {s.lower() for s in seen}:
+            if dest_name.lower() in seen:
                 # Avoid clobbering hubs; rare name collisions get a prefix
                 dest_name = f"{sub}-{src.name}"
             shutil.copy2(src, stage / dest_name)
             seen.add(dest_name.lower())
-            copied.append(f"{sub}/{src.name}")
+            copied.append(src.relative_to(wiki).as_posix())
     return copied
 
 
