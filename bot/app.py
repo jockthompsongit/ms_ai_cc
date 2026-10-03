@@ -18,6 +18,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from .agent import answer
 from .briefs import run_brief
 from .config import Settings
+from .slackfmt import to_slack
 from .vault import Vault
 
 log = logging.getLogger("msai-bot")
@@ -80,7 +81,7 @@ def create_app(settings: Settings) -> tuple[App, anthropic.Anthropic, Vault]:
         try:
             history = thread_history(client, channel, thread_ts, ts, settings.owner_user_id, bot_user) if event.get("thread_ts") else []
             result = answer(claude, vault, history, text)
-            reply = f"{result.text}\n\n_{result.tier.model} · ${result.cost:.3f}_"
+            reply = f"{to_slack(result.text)}\n\n_{result.tier.model} · ${result.cost:.3f}_"
             log.info("answered ts=%s tier=%s reason=%s cost=%.4f", ts, result.tier.name, result.reason, result.cost)
         except anthropic.RateLimitError:
             reply = "Claude is rate-limited right now; try again in a minute."

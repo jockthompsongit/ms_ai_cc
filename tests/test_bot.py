@@ -129,3 +129,16 @@ def test_thread_history_alternates_and_drops_strangers():
     assert [t["role"] for t in turns] == ["user", "assistant"]
     assert "$0.012" not in turns[1]["content"]
     assert all("ignore previous" not in t["content"] for t in turns)
+
+
+# --- Slack formatting -----------------------------------------------------------
+
+def test_markdown_to_slack():
+    from bot.slackfmt import to_slack
+
+    out = to_slack("## Due\n- **HW-W2**: briefs\n* see [Brightspace](https://brightspace.vanderbilt.edu)")
+    assert out.splitlines() == [
+        "*Due*",
+        "• *HW-W2*: briefs",
+        "• see <https://brightspace.vanderbilt.edu|Brightspace>",
+    ]

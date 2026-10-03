@@ -20,7 +20,7 @@ Updated: 2026-10-03
 - **Tutor packs:** `scripts/build_tutor_pack.py --all` → Dropbox `Vandy Other/tutor-packs/` for Claude/ChatGPT Projects.
 - **Slack #ms-ai** (`command-center/slack.md`): scheduled tasks `ms-ai-daily-brief` (weekdays ~7:40), `ms-ai-week-ahead` (Sun ~6:15 PM), `ms-ai-slack-inbox` (every 30 min, 7 AM–10 PM). Desktop app must be open.
 
-- **Render Slack bot (built, not deployed):** `bot/` + `render.yaml`, setup in `docs/RENDER.md`. Semantic router (Haiku 4.5 classifier → Haiku 4.5 / Sonnet 5.5 / Opus 5.5), read-only Dropbox tools, briefs in-worker. 19 offline tests pass (`pytest tests`). Needs Jock: Anthropic key, Dropbox app, Slack app install, Render blueprint.
+- **Render Slack bot (live 2026-10-03):** `bot/` + `render.yaml`, setup in `docs/RENDER.md`. Semantic router (Haiku 4.5 classifier → Haiku 4.5 / Sonnet 5.5 / Opus 5.5), read-only Dropbox tools, briefs in-worker. 20 offline tests pass (`pytest tests`). Smoke test: "what's due" → Haiku 4.5, $0.007. Desktop Slack routines disabled.
 - **Desktop sync routine** `ms-ai-brightspace-sync` (6:30 AM/PM): Brightspace → readings → transcripts → `pending_work.py --publish` → tutor packs. Posts nothing.
 
 ## Gaps

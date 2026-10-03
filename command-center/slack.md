@@ -1,9 +1,11 @@
 # Slack: #ms-ai agent channel
 
-> **Moving to Render.** The always-on bot (`bot/`, setup in `docs/RENDER.md`) posts as *MS AI
-> Assistant* and replaces the three desktop routines below once its smoke test passes. Until
-> then the desktop routines stay on. The desktop keeps only `ms-ai-brightspace-sync`, which
-> posts nothing and publishes `Vandy Other/status/pending.json` for the bot.
+> **Live on Render since 2026-10-03.** The always-on bot (`bot/`, setup in `docs/RENDER.md`)
+> posts as *MS AI Assistant* (user `U0C6KDCCS81`) and owns Slack: answers, morning brief,
+> week-ahead. The desktop routines `ms-ai-slack-inbox`, `ms-ai-daily-brief` and
+> `ms-ai-week-ahead` are **disabled**; the conventions below now apply only if one is re-enabled
+> as a fallback. The desktop keeps `ms-ai-brightspace-sync`, which posts nothing and publishes
+> `Vandy Other/status/pending.json` for the bot.
 
 Read this before any Slack run. Scheduled tasks in the Claude desktop app use it.
 
